@@ -3,6 +3,7 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { primaryNav } from "@/lib/data/navigation";
@@ -43,42 +44,44 @@ export default function Navbar() {
         solid ? "bg-ivory/95 shadow-sm shadow-navy-900/5 backdrop-blur-sm" : "bg-transparent"
       }`}
     >
-      <Container className="flex h-20 items-center justify-between">
-        <Logo theme={solid ? "light" : "dark"} />
+      <Reveal delay={0.1} y={-12} duration={0.8}>
+        <Container className="flex h-20 items-center justify-between">
+          <Logo theme={solid ? "light" : "dark"} />
 
-        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
-          {primaryNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`text-sm font-medium tracking-wide transition-colors ${
-                solid ? "text-ink hover:text-sapphire-700" : "text-ivory hover:text-gold-300"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+          <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
+            {primaryNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`text-sm font-medium tracking-wide transition-colors ${
+                  solid ? "text-ink hover:text-sapphire-700" : "text-ivory hover:text-gold-300"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <div className="hidden lg:block">
-          <Button href="/appointment" size="sm" tone={solid ? "light" : "dark"}>
-            Book Appointment
-          </Button>
-        </div>
+          <div className="hidden lg:block">
+            <Button href="/appointment" size="sm" tone={solid ? "light" : "dark"}>
+              Book Appointment
+            </Button>
+          </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors lg:hidden ${
-            solid ? "text-ink" : "text-ivory"
-          }`}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </Container>
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors lg:hidden ${
+              solid ? "text-ink" : "text-ivory"
+            }`}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </Container>
+      </Reveal>
 
       {open ? (
         <div id="mobile-menu" className="border-t border-ivory-200 bg-ivory lg:hidden">

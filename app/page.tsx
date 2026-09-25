@@ -6,13 +6,13 @@ import CollectorsPanel from "@/components/sections/CollectorsPanel";
 import ExploreCategories from "@/components/sections/ExploreCategories";
 import FeaturedGemstones from "@/components/sections/FeaturedGemstones";
 import FounderStory from "@/components/sections/FounderStory";
-import Hero from "@/components/sections/Hero";
+import HeroSection from "@/components/sections/HeroSection";
 import WhyTapro from "@/components/sections/WhyTapro";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroSection />
       <BrandIntro />
       <ExploreCategories />
       <FeaturedGemstones />
