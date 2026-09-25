@@ -1,3 +1,5 @@
+import Reveal from "@/components/motion/Reveal";
+import RevealGroup from "@/components/motion/RevealGroup";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -8,14 +10,19 @@ export default function CollectorsPanel() {
   return (
     <Section background="navy">
       <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-        <SectionHeading
-          tone="dark"
-          eyebrow="For Professionals"
-          title="Collectors & Professionals"
-          description="Private sourcing, wholesale parcels and consultation for collectors, investors and jewellery designers who require a trusted, direct relationship with origin."
-        />
-        <div className="flex flex-col gap-6 border-t border-gold-400/20 pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-12">
-          <ul className="flex flex-wrap gap-3">
+        <Reveal>
+          <SectionHeading
+            tone="dark"
+            eyebrow="For Professionals"
+            title="Collectors & Professionals"
+            description="Private sourcing, wholesale parcels and consultation for collectors, investors and jewellery designers who require a trusted, direct relationship with origin."
+          />
+        </Reveal>
+        <Reveal
+          delay={0.15}
+          className="flex flex-col gap-6 border-t border-gold-400/20 pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-12"
+        >
+          <RevealGroup as="ul" className="flex flex-wrap gap-3" stagger={0.08} y={12}>
             {audiences.map((audience) => (
               <li
                 key={audience}
@@ -24,7 +31,7 @@ export default function CollectorsPanel() {
                 {audience}
               </li>
             ))}
-          </ul>
+          </RevealGroup>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Button href="/collectors" size="md">
               Private Sourcing
@@ -33,7 +40,7 @@ export default function CollectorsPanel() {
               Speak With Us
             </Button>
           </div>
-        </div>
+        </Reveal>
       </div>
     </Section>
   );

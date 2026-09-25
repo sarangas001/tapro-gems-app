@@ -1,4 +1,6 @@
 import { Award, ShieldCheck } from "lucide-react";
+import Reveal from "@/components/motion/Reveal";
+import RevealGroup from "@/components/motion/RevealGroup";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -18,13 +20,14 @@ const certificates = [
 export default function Certification() {
   return (
     <Section background="white">
-      <SectionHeading
-        eyebrow="Certification"
-        title="Certification & Authenticity"
-        description="Every gemstone is offered with clear provenance. Sri Lankan gem authority certification is standard, with international certificates such as GIA available on request."
-        className="mb-14"
-      />
-      <div className="grid gap-6 sm:grid-cols-2">
+      <Reveal className="mb-14">
+        <SectionHeading
+          eyebrow="Certification"
+          title="Certification & Authenticity"
+          description="Every gemstone is offered with clear provenance. Sri Lankan gem authority certification is standard, with international certificates such as GIA available on request."
+        />
+      </Reveal>
+      <RevealGroup className="grid gap-6 sm:grid-cols-2">
         {certificates.map(({ icon: Icon, title, description }) => (
           <div
             key={title}
@@ -41,7 +44,7 @@ export default function Certification() {
             </div>
           </div>
         ))}
-      </div>
+      </RevealGroup>
     </Section>
   );
 }
