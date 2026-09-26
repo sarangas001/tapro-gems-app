@@ -1,34 +1,66 @@
-import Parallax from "@/components/motion/Parallax";
+import Image from "next/image";
+import Link from "next/link";
+import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
 import ColumnLines from "@/components/ui/ColumnLines";
-import GemPlaceholder from "@/components/ui/GemPlaceholder";
 
-/**
- * Stands in for the large gemstone video/visual until real footage is
- * supplied — same slot, same layout, just swap GemPlaceholder for a video.
- */
 export default function CinematicStory() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-navy-950 text-ivory">
-      <Parallax amount={100} className="absolute inset-x-0 -top-32 -bottom-32">
-        <GemPlaceholder tone="mixed" className="h-full w-full" />
-      </Parallax>
-      <div className="absolute inset-0 bg-linear-to-b from-navy-950/70 via-navy-950/20 to-navy-950/80" />
-      <ColumnLines tone="dark" />
+    <section className="relative overflow-hidden bg-ivory py-24 md:py-32 lg:py-40">
+      <ColumnLines tone="light" />
 
-      <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-8 px-6 text-center">
-        <Reveal className="flex flex-col items-center gap-8">
-          <span className="text-sm font-medium tracking-[0.3em] text-gold-300 uppercase">
-            The Tapro Story
-          </span>
-          <span className="h-px w-16 bg-gold-400" />
-        </Reveal>
-        <Reveal delay={0.2}>
-          <p className="font-accent text-2xl leading-relaxed text-ivory italic sm:text-3xl lg:text-4xl">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 sm:px-8 lg:grid-cols-2 lg:gap-12 lg:px-12">
+        <Reveal className="flex flex-col gap-6 text-center lg:text-left">
+          <h2 className="font-display text-5xl text-ink sm:text-6xl">The Tapro Story</h2>
+          <p className="font-accent mx-auto max-w-md text-xl leading-relaxed text-ink-muted italic lg:mx-0">
             &ldquo;Every gemstone carries the story of the earth it was
             formed in — we simply help it find the hands it belongs
             to.&rdquo;
           </p>
+
+          <div className="relative mt-6 flex items-center justify-center lg:justify-start">
+            <span
+              aria-hidden="true"
+              className="font-display pointer-events-none text-[9rem] leading-none text-ink/10 select-none sm:text-[11rem]"
+            >
+              O
+            </span>
+            <Link
+              href="/about"
+              className="absolute left-1/2 flex h-28 w-28 -translate-x-1/2 flex-col items-center justify-center gap-0.5 rounded-full bg-white text-center text-[11px] font-semibold tracking-[0.15em] text-ink uppercase shadow-lg shadow-navy-900/10 transition-colors hover:bg-gold-400 hover:text-navy-950 sm:h-32 sm:w-32 lg:left-14 lg:translate-x-0"
+            >
+              <span>Our</span>
+              <span>Journey</span>
+            </Link>
+          </div>
+        </Reveal>
+
+        <Reveal
+          delay={0.15}
+          className="relative mx-auto h-105 w-full max-w-md sm:h-120 lg:mx-0 lg:h-140 lg:max-w-none"
+        >
+          <ImageReveal className="absolute top-0 left-0 h-3/5 w-3/5 overflow-hidden rounded-2xl shadow-xl shadow-navy-900/20 sm:h-2/3 sm:w-2/3">
+            <Image
+              src="/real-gem.png"
+              alt="Raw sapphire crystal in its natural rock matrix"
+              fill
+              sizes="(min-width: 1024px) 20rem, 60vw"
+              className="object-cover"
+            />
+          </ImageReveal>
+          <span
+            aria-hidden="true"
+            className="absolute top-8 left-[56%] h-2 w-2 rounded-full bg-gold-500 sm:left-[62%]"
+          />
+          <ImageReveal className="absolute right-0 bottom-0 h-3/4 w-3/4 overflow-hidden rounded-2xl shadow-2xl shadow-navy-900/25 ring-8 ring-ivory">
+            <Image
+              src="/both-hand-with-gem.png"
+              alt="Two hands cupped together holding a polished sapphire"
+              fill
+              sizes="(min-width: 1024px) 24rem, 75vw"
+              className="object-cover"
+            />
+          </ImageReveal>
         </Reveal>
       </div>
     </section>
