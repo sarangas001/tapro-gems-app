@@ -1,12 +1,13 @@
 "use client";
 
-import { useLayoutEffect, useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import gsap from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 
 interface ImageRevealProps {
   children: ReactNode;
   className?: string;
+  style?: CSSProperties;
 }
 
 /**
@@ -14,7 +15,7 @@ interface ImageRevealProps {
  * scroll-in. Drop-in replacement for the element's own wrapper div — pass
  * the same className that box previously had.
  */
-export default function ImageReveal({ children, className = "" }: ImageRevealProps) {
+export default function ImageReveal({ children, className = "", style }: ImageRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -38,7 +39,7 @@ export default function ImageReveal({ children, className = "" }: ImageRevealPro
   }, []);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} style={style}>
       {children}
     </div>
   );

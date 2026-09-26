@@ -2,6 +2,7 @@ import AppointmentCTA from "@/components/sections/AppointmentCTA";
 import BrandIntro from "@/components/sections/BrandIntro";
 import Certification from "@/components/sections/Certification";
 import CinematicStory from "@/components/sections/CinematicStory";
+import CollectionsBanner from "@/components/sections/CollectionsBanner";
 import CollectorsPanel from "@/components/sections/CollectorsPanel";
 import ExploreCategories from "@/components/sections/ExploreCategories";
 import FeaturedGemstones from "@/components/sections/FeaturedGemstones";
@@ -15,6 +16,7 @@ export default function Home() {
       <HeroSection />
       <BrandIntro />
       <ExploreCategories />
+      <CollectionsBanner />
       <FeaturedGemstones />
       <WhyTapro />
       <CinematicStory />
