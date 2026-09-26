@@ -8,7 +8,7 @@ export default function EveryOccasion() {
   return (
     <Section background="white">
       <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
-        <Reveal className="order-last flex flex-col gap-6 lg:order-none">
+        <Reveal className="order-last flex flex-col gap-6 lg:order-0">
           <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
             Timeless Elegance,
             <br />
@@ -26,7 +26,7 @@ export default function EveryOccasion() {
 
         <Reveal
           delay={0.15}
-          className="relative order-first mx-auto w-full max-w-sm lg:order-none lg:max-w-none"
+          className="relative order-first mx-auto w-full max-w-sm lg:order-0 lg:max-w-none"
         >
           <span
             aria-hidden="true"
