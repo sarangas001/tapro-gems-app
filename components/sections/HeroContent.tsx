@@ -8,21 +8,18 @@ import Button from "@/components/ui/Button";
 export default function HeroContent() {
   return (
     <div data-hero="text-column" className="relative flex flex-col gap-8">
-      <div data-hero="label" className="flex items-center gap-4">
-        <span className="h-px w-10 bg-gold-400" />
-        <span className="text-sm font-medium tracking-[0.3em] text-gold-300 uppercase">
-          Tapro Gems — Finland
-        </span>
-      </div>
-      <h1 className="max-w-xl font-display text-4xl leading-[1.1] sm:text-5xl lg:text-6xl xl:text-7xl">
+      <h1 className="max-w-xl font-display text-4xl leading-[1.1] [text-shadow:0_4px_20px_rgba(7,13,25,0.85)] sm:text-5xl lg:text-6xl xl:text-7xl">
         <span data-hero="heading-1" className="block">
-          Natural Sri Lankan Gemstones.
+          Natural Gemstones.
         </span>
         <span data-hero="heading-2" className="block">
           Selected for the World.
         </span>
       </h1>
-      <p data-hero="paragraph" className="max-w-lg text-base leading-relaxed text-ivory-200/80 sm:text-lg">
+      <p
+        data-hero="paragraph"
+        className="max-w-lg text-base leading-relaxed text-ivory-200/80 [text-shadow:0_2px_12px_rgba(7,13,25,0.85)] sm:text-lg"
+      >
         Hand-selected, certified natural gemstones from Sri Lanka, presented
         with European trust.
       </p>

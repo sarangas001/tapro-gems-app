@@ -19,7 +19,7 @@ export default function Footer() {
       <Container className="py-20">
         <div className="grid gap-16 lg:grid-cols-[1.3fr_2fr]">
           <div className="flex flex-col gap-6">
-            <Logo theme="dark" />
+            <Logo />
             <p className="max-w-sm text-sm leading-relaxed text-ivory-200/70">
               A Finland-based, family-owned gemstone house offering 100% natural,
               hand-selected Sri Lankan gemstones to collectors, investors and

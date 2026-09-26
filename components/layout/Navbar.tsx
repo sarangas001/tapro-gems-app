@@ -46,7 +46,7 @@ export default function Navbar() {
     >
       <Reveal delay={0.1} y={-12} duration={0.8}>
         <Container className="flex h-20 items-center justify-between">
-          <Logo theme={solid ? "light" : "dark"} />
+          <Logo />
 
           <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
             {primaryNav.map((item) => (
