@@ -24,7 +24,7 @@ export default function Home() {
       <CinematicStory />
       <CollectorsPanel />
       <Certification />
-      <FounderStory />
+      {/* / */}
       <AppointmentCTA />
     </>
   );
