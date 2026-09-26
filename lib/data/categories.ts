@@ -1,10 +1,8 @@
-import type { GemTone } from "@/components/ui/GemPlaceholder";
-
 export interface GemstoneCategory {
   name: string;
   slug: string;
   description: string;
-  tone: GemTone;
+  image: string;
 }
 
 export const gemstoneCategories: GemstoneCategory[] = [
@@ -13,27 +11,27 @@ export const gemstoneCategories: GemstoneCategory[] = [
     slug: "sapphire",
     description:
       "The signature Ceylon blue — hand-selected and certified for depth of colour.",
-    tone: "sapphire",
+    image: "/sapphire.png",
   },
   {
     name: "Ruby",
     slug: "ruby",
     description:
       "Rare Sri Lankan rubies prized for their vivid, pigeon-blood tone.",
-    tone: "ruby",
+    image: "/ruby.png",
   },
   {
     name: "Star Sapphire",
     slug: "star-sapphire",
     description:
       "Natural asterism formed over millions of years, cut en cabochon.",
-    tone: "gold",
+    image: "/star-sapphire.png",
   },
   {
     name: "Rare Gemstones",
     slug: "rare-gemstones",
     description:
       "Exceptional and unusual stones sourced for the discerning collector.",
-    tone: "mixed",
+    image: "/rare-gemstones.png",
   },
 ];

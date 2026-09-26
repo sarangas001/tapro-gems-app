@@ -16,9 +16,8 @@ export default function ExploreCategories() {
           <CategoryCard
             key={category.slug}
             name={category.name}
-            description={category.description}
+            image={category.image}
             href={`/collections/${category.slug}`}
-            tone={category.tone}
           />
         ))}
       </RevealGroup>
