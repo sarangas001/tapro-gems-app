@@ -1,38 +1,83 @@
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import Link from "next/link";
+import { useRef } from "react";
 import Reveal from "@/components/motion/Reveal";
-import RevealGroup from "@/components/motion/RevealGroup";
-import Section from "@/components/ui/Section";
-import SectionHeading from "@/components/ui/SectionHeading";
+import gsap from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 
 export default function BrandIntro() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return;
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
+        })
+        .fromTo(
+          '[data-watermark="gemstones"]',
+          { xPercent: -20 },
+          { xPercent: 20, ease: "none" },
+          0,
+        )
+        .fromTo(
+          '[data-watermark="selection"]',
+          { xPercent: 20 },
+          { xPercent: -20, ease: "none" },
+          0,
+        );
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <Section background="white">
-      <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-ivory py-20 md:py-28"
+    >
+      <span
+        data-watermark="gemstones"
+        aria-hidden="true"
+        className="pointer-events-none absolute top-2 left-0 block select-none font-display text-[9rem] leading-none whitespace-nowrap text-navy-900/5 sm:text-[13rem] lg:text-[17rem]"
+      >
+        Gemstones
+      </span>
+      <span
+        data-watermark="selection"
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 bottom-2 block select-none font-display text-[9rem] leading-none whitespace-nowrap text-navy-900/5 sm:text-[13rem] lg:text-[17rem]"
+      >
+        Selection
+      </span>
+
+      <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-12 px-6 text-center">
         <Reveal>
-          <SectionHeading
-            eyebrow="Our Story"
-            title="A family tradition of exceptional gemstones."
-            description="Tapro Gems is a Finland-based, family-owned gemstone house dedicated to sourcing 100% natural Sri Lankan gemstones. Every stone is hand-selected at origin, evaluated for exceptional colour and clarity, and offered with the certification and personal service our clients expect."
-          />
+          <p className="font-display text-2xl leading-relaxed text-ink sm:text-3xl lg:text-4xl">
+            Three generations of expertise, dedicated to bringing the finest
+            natural gemstones from Sri Lanka to discerning collectors across
+            Europe.
+          </p>
         </Reveal>
-        <RevealGroup
-          as="dl"
-          className="grid grid-cols-3 gap-6 border-t border-ivory-200 pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-12"
-          stagger={0.15}
-        >
-          <div>
-            <dt className="font-display text-3xl text-sapphire-700">100%</dt>
-            <dd className="mt-1 text-sm text-ink-muted">Natural gemstones</dd>
-          </div>
-          <div>
-            <dt className="font-display text-3xl text-sapphire-700">3</dt>
-            <dd className="mt-1 text-sm text-ink-muted">Generations sourcing</dd>
-          </div>
-          <div>
-            <dt className="font-display text-3xl text-sapphire-700">EU</dt>
-            <dd className="mt-1 text-sm text-ink-muted">Finland based, Europe wide</dd>
-          </div>
-        </RevealGroup>
+
+        <Reveal delay={0.15}>
+          <Link
+            href="/about"
+            className="flex h-32 w-32 flex-col items-center justify-center gap-0.5 rounded-full border border-navy-900/20 text-xs font-semibold tracking-[0.15em] text-navy-900 uppercase transition-colors hover:border-gold-500 hover:text-gold-600"
+          >
+            <span>Our</span>
+            <span>Story</span>
+          </Link>
+        </Reveal>
       </div>
-    </Section>
+    </section>
   );
 }
