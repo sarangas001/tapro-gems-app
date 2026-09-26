@@ -14,4 +14,7 @@ export interface GemstoneSummary {
   colour: string;
   origin: string;
   image: string;
+  gallery: string[];
+  certification: string;
+  description: string;
 }

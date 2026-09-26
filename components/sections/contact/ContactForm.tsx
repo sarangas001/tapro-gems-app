@@ -31,7 +31,7 @@ export default function ContactForm() {
   };
 
   return (
-    <Section background="ivory">
+    <Section id="enquiry-form" background="ivory" className="scroll-mt-24">
       <div className="mx-auto flex max-w-3xl flex-col gap-10">
         <Reveal className="flex flex-col items-center gap-4 text-center">
           <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">

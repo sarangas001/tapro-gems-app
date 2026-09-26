@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tapro Gems
 
-## Getting Started
+Tapro Gems is a premium gemstone website for a Finland-based, family-owned business specialising in 100% natural Sri Lankan gemstones.
 
-First, run the development server:
+The website is designed with a calm Nordic luxury style, combining clean layouts, cinematic gemstone visuals, and smooth interactions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Premium luxury UI
+- Natural Sri Lankan gemstone collections
+- 3D sapphire hero experience
+- Smooth GSAP animations
+- Responsive design
+- Gemstone detail pages
+- Certification information
+- Private appointment booking
+- Contact and enquiry sections
+- Multilingual-ready structure
+- English, Finnish, and Swedish support
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Target Audience
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Collectors
+- Investors
+- Jewellery designers
+- Wholesale gemstone buyers
+- Private luxury buyers
+- Couples looking for unique gemstones
 
-## Learn More
+## Brand Direction
 
-To learn more about Next.js, take a look at the following resources:
+- Sapphire Blue
+- Midnight Navy
+- Champagne Gold
+- Soft White / Ivory
+- Elegant serif typography
+- Clean modern sans-serif typography
+- Nordic luxury aesthetic
+- Cinematic gemstone presentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- React
+- TypeScript
+- GSAP
+- ScrollTrigger
+- Three.js / React Three Fiber
+- Responsive CSS
 
-## Deploy on Vercel
+## Main Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Home
+- Shop
+- Gemstone Collections
+- Gemstone Details
+- About
+- Certification
+- Collectors / Wholesale
+- Book Appointment
+- FAQ
+- Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Goal
+
+The goal of Tapro Gems is to create a premium European-facing digital experience that presents authentic Sri Lankan gemstones with trust, transparency, and refined luxury.
+
+---
+
+© Tapro Gems
