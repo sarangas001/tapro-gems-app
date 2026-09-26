@@ -1,24 +1,40 @@
+import Image from "next/image";
 import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
-import Section from "@/components/ui/Section";
+import ColumnLines from "@/components/ui/ColumnLines";
+import Container from "@/components/ui/Container";
 
 export default function PrivateAppointment() {
   return (
-    <Section background="navy">
-      <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-        <span className="h-px w-16 bg-gold-400" aria-hidden="true" />
-        <h2 className="font-display text-3xl leading-tight sm:text-4xl">
-          Prefer a More Personal Consultation?
-        </h2>
-        <p className="max-w-lg text-base leading-relaxed text-ivory-200/80 sm:text-lg">
-          Book a private appointment with Tapro Gems and speak directly with
-          our team about your gemstone requirements, sourcing options and
-          certification needs.
-        </p>
-        <Button href="/appointment" size="md">
-          Book a Private Appointment
-        </Button>
-      </Reveal>
-    </Section>
+    <section className="relative overflow-hidden bg-navy-950 text-ivory">
+      <Image
+        src="/gems-back-img.png"
+        alt="Natural sapphires and rubies resting on dark velvet"
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-navy-950/30" />
+      <ColumnLines tone="dark" />
+
+      <Container className="relative flex flex-col items-center gap-6 py-24 text-center md:py-32 lg:py-40">
+        <Reveal className="flex flex-col items-center gap-6">
+          <span className="h-px w-16 bg-gold-400" aria-hidden="true" />
+          <h2 className="font-display text-3xl leading-tight sm:text-4xl">
+            Prefer a More Personal Consultation?
+          </h2>
+          <p className="max-w-lg text-base leading-relaxed text-ivory-200/80 sm:text-lg">
+            Book a private appointment with Tapro Gems and speak directly
+            with our team about your gemstone requirements, sourcing
+            options and certification needs.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <Button href="/appointment" size="md">
+            Book a Private Appointment
+          </Button>
+        </Reveal>
+      </Container>
+    </section>
   );
 }
