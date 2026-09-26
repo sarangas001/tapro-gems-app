@@ -19,7 +19,7 @@ export default function GemstoneCard({ gemstone }: GemstoneCardProps) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <Link
-          href={`/gemstones/${gemstone.slug}`}
+          href={`/shop/${gemstone.slug}`}
           aria-label={`View ${gemstone.name}`}
           className="absolute -bottom-5 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink shadow-md shadow-navy-900/15 transition-colors hover:bg-gold-400 hover:text-navy-950"
         >
