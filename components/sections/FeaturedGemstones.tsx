@@ -7,9 +7,9 @@ import { featuredGemstones } from "@/lib/data/gemstones";
 
 export default function FeaturedGemstones() {
   return (
-    <Section background="navy">
+    <Section background="white">
       <Reveal className="mb-16 flex flex-col items-center gap-4 text-center">
-        <h2 className="font-display text-3xl font-semibold tracking-[0.2em] text-ivory uppercase sm:text-4xl">
+        <h2 className="font-display text-3xl font-semibold tracking-[0.2em] text-ink uppercase sm:text-4xl">
           Featured Gemstones
         </h2>
         <span className="h-px w-12 bg-gold-500" />
@@ -22,7 +22,7 @@ export default function FeaturedGemstones() {
       </RevealGroup>
 
       <Reveal className="mt-16 flex justify-center">
-        <Button href="/shop" variant="outline" tone="dark" size="sm">
+        <Button href="/shop" variant="outline" size="sm">
           View All Gemstones
         </Button>
       </Reveal>

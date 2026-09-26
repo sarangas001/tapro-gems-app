@@ -9,7 +9,7 @@ export default function CollectionsBanner() {
     <Link
       href="/shop"
       aria-label="View All Gemstones"
-      className="group relative flex h-125 flex-col items-center justify-center overflow-hidden bg-ivory sm:h-150 lg:h-175"
+      className="group relative flex h-135 flex-col items-center justify-center overflow-hidden bg-ivory sm:h-160 lg:h-185"
     >
       <ColumnLines tone="light" />
 
@@ -39,9 +39,9 @@ export default function CollectionsBanner() {
 
       <Reveal
         delay={0.15}
-        className="pointer-events-none absolute inset-x-0 bottom-8 px-6 text-center sm:bottom-10 lg:bottom-14"
+        className="pointer-events-none absolute inset-x-0 bottom-6 px-6 text-center sm:bottom-8 lg:bottom-10"
       >
-        <p className="font-accent mx-auto max-w-md text-sm text-ink-muted italic sm:text-base">
+        <p className="font-display mx-auto max-w-2xl text-xl leading-snug text-ink sm:text-2xl lg:text-3xl">
           Each stone is hand-selected for its rarity, clarity, and light —
           brilliance that speaks for itself.
         </p>
