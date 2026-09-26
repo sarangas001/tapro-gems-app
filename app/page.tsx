@@ -17,10 +17,10 @@ export default function Home() {
       <HeroSection />
       <BrandIntro />
       <FeaturedGemstones />
-      <CollectionsBanner />
-      <ExploreCategories />
       <WhyTapro />
       <EveryOccasion />
+      <CollectionsBanner />
+      <ExploreCategories />
       <CinematicStory />
       <CollectorsPanel />
       <Certification />
