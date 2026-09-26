@@ -1,0 +1,48 @@
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+export const primaryNav: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "Shop", href: "/shop" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+export const footerNav: { title: string; links: NavLink[] }[] = [
+  {
+    title: "Explore",
+    links: [
+      { label: "Shop Gemstones", href: "/shop" },
+      { label: "Collections", href: "/collections" },
+      { label: "Certification", href: "/certification" },
+      { label: "Collectors & Wholesale", href: "/collectors" },
+    ],
+  },
+  {
+    title: "Tapro Gems",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Shop", href: "/shop" },
+      { label: "About", href: "/about" },
+      { label: "Certification", href: "/certification" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Cookies Policy", href: "/cookies" },
+      { label: "Terms", href: "/terms" },
+      { label: "Shipping & Purchase Policy", href: "/shipping" },
+    ],
+  },
+];
+
+export const languages: { code: string; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "fi", label: "FI" },
+  { code: "sv", label: "SV" },
+];
