@@ -20,7 +20,7 @@ export default function CollectionsBanner() {
       <Reveal className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <span
           aria-hidden="true"
-          className="select-none font-display text-[5rem] leading-none tracking-tight text-sapphire-300 sm:text-[8rem] lg:text-[11rem]"
+          className="select-none font-display text-[5.5rem] leading-none tracking-tight text-gold-500/60 sm:text-[8.5rem] lg:text-[15rem]"
         >
           brilliance
         </span>
