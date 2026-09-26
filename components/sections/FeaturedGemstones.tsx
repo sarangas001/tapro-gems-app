@@ -3,27 +3,29 @@ import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
-import SectionHeading from "@/components/ui/SectionHeading";
 import { featuredGemstones } from "@/lib/data/gemstones";
 
 export default function FeaturedGemstones() {
   return (
-    <Section background="white">
-      <Reveal className="mb-14 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-        <SectionHeading
-          eyebrow="Curated Selection"
-          title="Featured Gemstones"
-          description="A rotating selection of exceptional stones. Prices available on request."
-        />
-        <Button href="/shop" variant="outline" size="sm" className="shrink-0">
-          View All Gemstones
-        </Button>
+    <Section background="navy">
+      <Reveal className="mb-16 flex flex-col items-center gap-4 text-center">
+        <h2 className="font-display text-2xl tracking-[0.2em] text-ivory uppercase sm:text-3xl">
+          Featured Gemstones
+        </h2>
+        <span className="h-px w-12 bg-gold-500" />
       </Reveal>
-      <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+      <RevealGroup className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
         {featuredGemstones.map((gemstone) => (
           <GemstoneCard key={gemstone.id} gemstone={gemstone} />
         ))}
       </RevealGroup>
+
+      <Reveal className="mt-16 flex justify-center">
+        <Button href="/shop" variant="outline" tone="dark" size="sm">
+          View All Gemstones
+        </Button>
+      </Reveal>
     </Section>
   );
 }

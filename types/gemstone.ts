@@ -13,4 +13,5 @@ export interface GemstoneSummary {
   cut: string;
   colour: string;
   origin: string;
+  image: string;
 }

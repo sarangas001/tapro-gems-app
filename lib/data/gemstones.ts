@@ -10,6 +10,7 @@ export const featuredGemstones: GemstoneSummary[] = [
     cut: "Cushion",
     colour: "Royal Blue",
     origin: "Ratnapura, Sri Lanka",
+    image: "/Royal Blue Ceylon Sapphire.png",
   },
   {
     id: "2",
@@ -20,6 +21,7 @@ export const featuredGemstones: GemstoneSummary[] = [
     cut: "Oval",
     colour: "Vivid Red",
     origin: "Elahera, Sri Lanka",
+    image: "/Pigeon Blood Ruby.png",
   },
   {
     id: "3",
@@ -30,6 +32,7 @@ export const featuredGemstones: GemstoneSummary[] = [
     cut: "Cabochon",
     colour: "Cornflower Blue",
     origin: "Ratnapura, Sri Lanka",
+    image: "/Natural Star Sapphire.png",
   },
   {
     id: "4",
@@ -40,5 +43,6 @@ export const featuredGemstones: GemstoneSummary[] = [
     cut: "Emerald",
     colour: "Pink-Orange",
     origin: "Ratnapura, Sri Lanka",
+    image: "/Padparadscha Sapphire.png",
   },
 ];
