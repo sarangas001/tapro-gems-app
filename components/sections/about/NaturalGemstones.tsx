@@ -1,7 +1,8 @@
 import { Check } from "lucide-react";
+import Image from "next/image";
+import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import Section from "@/components/ui/Section";
 
 const details = ["Carat", "Cut", "Colour", "Origin", "Certification", "Visual Details"];
@@ -37,7 +38,15 @@ export default function NaturalGemstones() {
             aria-hidden="true"
             className="absolute -right-6 -bottom-6 -z-10 h-4/5 w-3/5 rounded-2xl bg-gold-100"
           />
-          <ImagePlaceholder className="aspect-4/5 w-full" />
+          <ImageReveal className="relative aspect-4/5 w-full overflow-hidden rounded-2xl shadow-xl shadow-navy-900/10">
+            <Image
+              src="/100-percent-natural.png"
+              alt="Natural cushion-cut sapphire resting on marble"
+              fill
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="object-cover"
+            />
+          </ImageReveal>
         </Reveal>
       </div>
     </Section>

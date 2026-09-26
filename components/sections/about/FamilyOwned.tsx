@@ -1,5 +1,6 @@
+import Image from "next/image";
+import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import Section from "@/components/ui/Section";
 
 export default function FamilyOwned() {
@@ -30,7 +31,15 @@ export default function FamilyOwned() {
             aria-hidden="true"
             className="absolute -top-6 -right-6 -z-10 h-4/5 w-3/5 rounded-2xl bg-sapphire-100"
           />
-          <ImagePlaceholder className="aspect-4/5 w-full" />
+          <ImageReveal className="relative aspect-4/5 w-full overflow-hidden rounded-2xl shadow-xl shadow-navy-900/10">
+            <Image
+              src="/Family-Owned-img.png"
+              alt="Two people examining a natural sapphire together"
+              fill
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="object-cover"
+            />
+          </ImageReveal>
         </Reveal>
       </div>
     </Section>

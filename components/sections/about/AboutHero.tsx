@@ -1,28 +1,61 @@
-import Reveal from "@/components/motion/Reveal";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
-import Section from "@/components/ui/Section";
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import Image from "next/image";
+import { useRef } from "react";
+import Container from "@/components/ui/Container";
+import gsap from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 
 export default function AboutHero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return;
+
+      gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .from('[data-hero="background"]', { opacity: 0, duration: 1.1 })
+        .from('[data-hero="eyebrow"]', { opacity: 0, y: 16, duration: 0.8 }, "-=0.6")
+        .from('[data-hero="heading"]', { opacity: 0, y: 26, duration: 0.9 }, "-=0.55");
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <Section background="navy-deep" className="pt-32 md:pt-40 lg:pt-48">
-      <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
-        <Reveal className="flex flex-col gap-6">
-          <span className="text-sm font-medium tracking-[0.3em] text-gold-300 uppercase">
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-screen items-center overflow-hidden bg-ivory text-ink"
+    >
+      <div data-hero="background" className="absolute inset-0">
+        <Image
+          src="/about-hero.png"
+          alt="Woman holding a natural Tapro Gems sapphire"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[70%_center]"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(250,248,244,0.92)_0%,rgba(250,248,244,0.6)_28%,rgba(250,248,244,0)_55%)]" />
+      </div>
+
+      <Container className="relative pt-32 pb-20">
+        <div className="flex max-w-xl flex-col gap-6">
+          <span
+            data-hero="eyebrow"
+            className="text-sm font-medium tracking-[0.3em] text-gold-600 uppercase"
+          >
             About Tapro Gems
           </span>
-          <h1 className="font-display text-4xl leading-tight sm:text-5xl lg:text-6xl">
+          <h1
+            data-hero="heading"
+            className="font-display text-4xl leading-tight sm:text-5xl lg:text-6xl"
+          >
             Natural Sri Lankan Gemstones, Presented with Nordic Refinement
           </h1>
-        </Reveal>
-
-        <Reveal delay={0.15} className="relative mx-auto w-full max-w-sm lg:max-w-none">
-          <span
-            aria-hidden="true"
-            className="absolute -top-6 -right-6 -z-10 h-4/5 w-3/5 rounded-2xl bg-gold-500/10"
-          />
-          <ImagePlaceholder tone="dark" className="aspect-4/5 w-full" />
-        </Reveal>
-      </div>
-    </Section>
+        </div>
+      </Container>
+    </section>
   );
 }

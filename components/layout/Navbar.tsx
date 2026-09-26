@@ -2,6 +2,7 @@
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
@@ -10,6 +11,8 @@ import { primaryNav } from "@/lib/data/navigation";
 import Logo from "./Logo";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -36,7 +39,7 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  const solid = scrolled || open;
+  const solid = !isHome || scrolled || open;
 
   return (
     <header

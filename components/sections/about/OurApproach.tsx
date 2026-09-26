@@ -15,13 +15,13 @@ const focusPoints = [
 
 export default function OurApproach() {
   return (
-    <Section background="navy">
+    <Section background="white">
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-10 text-center">
         <Reveal className="flex flex-col items-center gap-4">
-          <span className="text-sm font-medium tracking-[0.2em] text-gold-300 uppercase">
+          <span className="text-sm font-medium tracking-[0.2em] text-gold-600 uppercase">
             Our Approach
           </span>
-          <h2 className="font-display text-3xl leading-tight sm:text-4xl">
+          <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">
             Hand-Selected. Natural. Certified. Personal.
           </h2>
         </Reveal>
@@ -32,8 +32,8 @@ export default function OurApproach() {
           stagger={0.06}
         >
           {focusPoints.map((point) => (
-            <li key={point} className="flex items-center gap-2 text-sm font-medium text-ivory">
-              <Check className="h-4 w-4 text-gold-400" aria-hidden="true" />
+            <li key={point} className="flex items-center gap-2 text-sm font-medium text-ink">
+              <Check className="h-4 w-4 text-gold-600" aria-hidden="true" />
               {point}
             </li>
           ))}
