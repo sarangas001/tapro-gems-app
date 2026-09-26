@@ -12,7 +12,7 @@ export default function CinematicStory() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 sm:px-8 lg:grid-cols-2 lg:gap-12 lg:px-12">
         <Reveal className="flex flex-col gap-6 text-center lg:text-left">
           <h2 className="font-display text-5xl text-ink sm:text-6xl">The Tapro Story</h2>
-          <p className="font-accent mx-auto max-w-md text-xl leading-relaxed text-ink-muted italic lg:mx-0">
+          <p className="mx-auto max-w-md text-base leading-relaxed text-ink-muted sm:text-lg lg:mx-0">
             &ldquo;Every gemstone carries the story of the earth it was
             formed in — we simply help it find the hands it belongs
             to.&rdquo;

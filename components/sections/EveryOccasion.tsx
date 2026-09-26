@@ -14,7 +14,7 @@ export default function EveryOccasion() {
             <br />
             Any Occasion.
           </h2>
-          <p className="font-accent max-w-md text-lg text-ink-muted italic">
+          <p className="max-w-md text-base leading-relaxed text-ink-muted sm:text-lg">
             one exceptional stone, set to accompany every chapter of your
             life — from boardroom to gala.
           </p>
