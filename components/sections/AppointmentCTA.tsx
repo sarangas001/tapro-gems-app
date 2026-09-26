@@ -6,7 +6,7 @@ import Container from "@/components/ui/Container";
 
 export default function AppointmentCTA() {
   return (
-    <section className="relative overflow-hidden bg-navy-950">
+    <section className="relative overflow-hidden bg-ivory">
       <div className="relative bg-ivory">
         <ColumnLines tone="light" />
         <Container className="relative flex flex-col items-center gap-5 pt-24 pb-10 text-center md:pt-32 lg:pt-40">
@@ -25,10 +25,10 @@ export default function AppointmentCTA() {
       </div>
 
       <div className="relative mx-auto w-full max-w-[1920px]">
-        <div className="relative aspect-1983/793 w-full bg-linear-to-b from-ivory to-navy-950">
+        <div className="relative aspect-1983/793 w-full bg-ivory">
           <Image
             src="/footer-img.png"
-            alt="Natural sapphires and a ruby resting on raw volcanic rock at origin"
+            alt="Natural sapphires and a ruby resting on ivory satin fabric"
             fill
             sizes="100vw"
             className="object-cover"
