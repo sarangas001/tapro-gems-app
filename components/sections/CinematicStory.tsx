@@ -1,5 +1,6 @@
 import Parallax from "@/components/motion/Parallax";
 import Reveal from "@/components/motion/Reveal";
+import ColumnLines from "@/components/ui/ColumnLines";
 import GemPlaceholder from "@/components/ui/GemPlaceholder";
 
 /**
@@ -13,6 +14,7 @@ export default function CinematicStory() {
         <GemPlaceholder tone="mixed" className="h-full w-full" />
       </Parallax>
       <div className="absolute inset-0 bg-linear-to-b from-navy-950/70 via-navy-950/20 to-navy-950/80" />
+      <ColumnLines tone="dark" />
 
       <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-8 px-6 text-center">
         <Reveal className="flex flex-col items-center gap-8">

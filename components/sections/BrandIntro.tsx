@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { useRef } from "react";
 import Reveal from "@/components/motion/Reveal";
+import ColumnLines from "@/components/ui/ColumnLines";
 import gsap from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 
@@ -44,6 +45,7 @@ export default function BrandIntro() {
       ref={sectionRef}
       className="relative overflow-hidden bg-ivory py-20 md:py-28"
     >
+      <ColumnLines tone="light" />
       <span
         data-watermark="gemstones"
         aria-hidden="true"

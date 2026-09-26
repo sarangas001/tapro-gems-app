@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import ColumnLines from "./ColumnLines";
 import Container from "./Container";
 
 const backgrounds = {
@@ -6,6 +7,13 @@ const backgrounds = {
   white: "bg-white text-ink",
   navy: "bg-navy-900 text-ivory",
   "navy-deep": "bg-navy-950 text-ivory",
+} as const;
+
+const lineTone = {
+  ivory: "light",
+  white: "light",
+  navy: "dark",
+  "navy-deep": "dark",
 } as const;
 
 export type SectionBackground = keyof typeof backgrounds;
@@ -30,12 +38,13 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-24 md:py-32 lg:py-40 ${backgrounds[background]} ${className}`}
+      className={`relative overflow-hidden py-24 md:py-32 lg:py-40 ${backgrounds[background]} ${className}`}
     >
+      <ColumnLines tone={lineTone[background]} />
       {noContainer ? (
-        children
+        <div className="relative">{children}</div>
       ) : (
-        <Container className={containerClassName}>{children}</Container>
+        <Container className={`relative ${containerClassName}`}>{children}</Container>
       )}
     </section>
   );

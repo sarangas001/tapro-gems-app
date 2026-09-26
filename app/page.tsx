@@ -15,9 +15,9 @@ export default function Home() {
     <>
       <HeroSection />
       <BrandIntro />
-      <ExploreCategories />
-      <CollectionsBanner />
       <FeaturedGemstones />
+      <CollectionsBanner />
+      <ExploreCategories />
       <WhyTapro />
       <CinematicStory />
       <CollectorsPanel />

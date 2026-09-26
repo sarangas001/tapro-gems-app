@@ -2,20 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
-
-const columnLines = {
-  backgroundImage:
-    "repeating-linear-gradient(to right, transparent, transparent 239px, rgba(11,21,38,0.06) 239px, rgba(11,21,38,0.06) 240px)",
-};
+import ColumnLines from "@/components/ui/ColumnLines";
 
 export default function CollectionsBanner() {
   return (
     <Link
       href="/shop"
       aria-label="View All Gemstones"
-      className="group relative flex h-115 items-center justify-center overflow-hidden bg-ivory sm:h-140 lg:h-165"
+      className="group relative flex h-125 flex-col items-center justify-center overflow-hidden bg-ivory sm:h-150 lg:h-175"
     >
-      <span aria-hidden="true" className="pointer-events-none absolute inset-0" style={columnLines} />
+      <ColumnLines tone="light" />
 
       <Reveal className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <span
@@ -40,6 +36,16 @@ export default function CollectionsBanner() {
           className="object-contain object-top transition-transform duration-500 group-hover:scale-105"
         />
       </ImageReveal>
+
+      <Reveal
+        delay={0.15}
+        className="pointer-events-none absolute inset-x-0 bottom-8 px-6 text-center sm:bottom-10 lg:bottom-14"
+      >
+        <p className="font-accent mx-auto max-w-md text-sm text-ink-muted italic sm:text-base">
+          Each stone is hand-selected for its rarity, clarity, and light —
+          brilliance that speaks for itself.
+        </p>
+      </Reveal>
     </Link>
   );
 }
