@@ -18,16 +18,10 @@ export default function CinematicStory() {
             to.&rdquo;
           </p>
 
-          <div className="relative mt-6 flex items-center justify-center lg:justify-start">
-            <span
-              aria-hidden="true"
-              className="font-display pointer-events-none text-[9rem] leading-none text-ink/10 select-none sm:text-[11rem]"
-            >
-              O
-            </span>
+          <div className="mt-6 flex justify-center lg:justify-start">
             <Link
               href="/about"
-              className="absolute left-1/2 flex h-28 w-28 -translate-x-1/2 flex-col items-center justify-center gap-0.5 rounded-full bg-white text-center text-[11px] font-semibold tracking-[0.15em] text-ink uppercase shadow-lg shadow-navy-900/10 transition-colors hover:bg-gold-400 hover:text-navy-950 sm:h-32 sm:w-32 lg:left-14 lg:translate-x-0"
+              className="flex h-28 w-28 flex-col items-center justify-center gap-0.5 rounded-full bg-white text-center text-[11px] font-semibold tracking-[0.15em] text-ink uppercase shadow-lg shadow-navy-900/10 transition-colors hover:bg-gold-400 hover:text-navy-950 sm:h-32 sm:w-32"
             >
               <span>Our</span>
               <span>Journey</span>
