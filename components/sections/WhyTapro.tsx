@@ -1,4 +1,4 @@
-import { Gem, Globe, MapPin, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { Check } from "lucide-react";
 import Image from "next/image";
 import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
@@ -6,13 +6,12 @@ import RevealGroup from "@/components/motion/RevealGroup";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 
-const points = [
-  { icon: Gem, title: "100% Natural" },
-  { icon: MapPin, title: "Sri Lankan Origin" },
-  { icon: Sparkles, title: "Hand Selected" },
-  { icon: ShieldCheck, title: "Certified" },
-  { icon: Users, title: "Family Owned" },
-  { icon: Globe, title: "Europe Based" },
+const keyPoints = [
+  "100% Natural",
+  "Sri Lankan Origin",
+  "Hand Selected",
+  "Certified",
+  "Family Owned",
 ];
 
 export default function WhyTapro() {
@@ -42,33 +41,35 @@ export default function WhyTapro() {
         <Reveal delay={0.15} className="flex flex-col gap-6">
           <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold-500" />
           <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
-            Trusted, Natural,
+            Every Stone,
             <br />
-            Certified.
+            Honestly Sourced.
           </h2>
-          <p className="font-accent text-lg text-ink-muted italic">
-            natural gemstones. independently certified.
+          <p className="max-w-md text-base leading-relaxed text-ink-muted sm:text-lg">
+            Every gemstone we offer is hand-selected at origin in Sri Lanka
+            and independently certified — a standard upheld by three
+            generations of family ownership.
           </p>
+
+          <RevealGroup
+            as="ul"
+            className="flex flex-wrap gap-x-6 gap-y-3"
+            stagger={0.06}
+          >
+            {keyPoints.map((point) => (
+              <li key={point} className="flex items-center gap-2 text-sm font-medium text-ink">
+                <Check className="h-4 w-4 text-gold-600" aria-hidden="true" />
+                {point}
+              </li>
+            ))}
+          </RevealGroup>
+
           <Button href="/certification" variant="outline" size="sm" className="w-fit gap-3">
             <span aria-hidden="true" className="h-px w-6 bg-current" />
             Discover
           </Button>
         </Reveal>
       </div>
-
-      <RevealGroup
-        className="mt-20 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-6"
-        stagger={0.08}
-      >
-        {points.map(({ icon: Icon, title }) => (
-          <div key={title} className="flex flex-col items-center gap-3 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-sapphire-900/5 text-sapphire-700">
-              <Icon className="h-6 w-6" />
-            </span>
-            <span className="text-sm font-medium text-ink">{title}</span>
-          </div>
-        ))}
-      </RevealGroup>
     </Section>
   );
 }
