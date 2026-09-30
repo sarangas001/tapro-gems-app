@@ -48,7 +48,7 @@ export default function OurTeam() {
                     <span className="text-sm font-medium tracking-[0.2em] text-gold-600 uppercase">
                       {member.title}
                     </span>
-                    <h3 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+                    <h3 className=" font-bold text-base leading-tight text-ink sm:text-base">
                       {member.name}
                     </h3>
                     <div className="flex flex-col gap-4 text-base leading-relaxed text-ink-muted sm:text-lg">

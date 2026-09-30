@@ -20,7 +20,6 @@ export default function ExploreCategories() {
               name={category.name}
               image={category.image}
               href={gemstone ? `/shop/${gemstone.slug}` : "/shop"}
-              videoSrc={gemstone?.video}
             />
           );
         })}

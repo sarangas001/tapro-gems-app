@@ -1,23 +1,35 @@
 import { Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import AutoplayVideo from "@/components/ui/AutoplayVideo";
 import type { GemstoneSummary } from "@/types/gemstone";
 
 interface GemstoneCardProps {
   gemstone: GemstoneSummary;
+  /** Play the gemstone's video in place of its image, when it has one. */
+  autoplayVideo?: boolean;
 }
 
-export default function GemstoneCard({ gemstone }: GemstoneCardProps) {
+export default function GemstoneCard({ gemstone, autoplayVideo = false }: GemstoneCardProps) {
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-ivory-100 shadow-sm shadow-navy-900/5 transition-shadow duration-300 hover:shadow-lg hover:shadow-navy-900/10">
       <div className="relative aspect-square">
-        <Image
-          src={gemstone.image}
-          alt={gemstone.name}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        {autoplayVideo && gemstone.video ? (
+          <AutoplayVideo
+            src={gemstone.video}
+            poster={gemstone.image}
+            aria-label={gemstone.name}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <Image
+            src={gemstone.image}
+            alt={gemstone.name}
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        )}
         <span
           aria-hidden="true"
           className="absolute -bottom-5 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink shadow-md shadow-navy-900/15 transition-colors group-hover:bg-gold-400 group-hover:text-navy-950"

@@ -16,7 +16,7 @@ export const gemstones: GemstoneSummary[] = [
     origin: "Ratnapura, Sri Lanka",
     image: "/Royal Blue Ceylon Sapphire.png",
     gallery: ["/sapphire.png"],
-    video: "/videos/Blue%20Sapphire.mp4",
+    video: "/videos/web/royal-blue-ceylon-sapphire.mp4",
     featured: true,
     certification,
     description:
@@ -27,11 +27,12 @@ export const gemstones: GemstoneSummary[] = [
     slug: "pigeon-blood-ruby",
     name: "Pigeon Blood Ruby",
     category: "Ruby",
-    caratWeight: 2.85,
+    caratWeight: 3.75,
     cut: "Oval",
     colour: "Vivid Red",
     origin: "Elahera, Sri Lanka",
     image: "/Pigeon Blood Ruby.png",
+    video: "/videos/ruby-video.mp4",
     gallery: ["/ruby.png"],
     certification,
     description:
@@ -62,7 +63,8 @@ export const gemstones: GemstoneSummary[] = [
     colour: "Pink-Orange",
     origin: "Ratnapura, Sri Lanka",
     image: "/Padparadscha Sapphire.png",
-    gallery: ["/rare-gemstones.png"],
+    video: "/videos/padparadscha-sapphire.mp4",
+    gallery: ["/Padparadscha Sapphire.png"],
     certification,
     description:
       "An exceptionally rare pink-orange padparadscha sapphire, named for the lotus blossom it resembles. Its delicate, even colour zoning and emerald cut make it a coveted centrepiece for collectors.",
@@ -77,8 +79,8 @@ export const gemstones: GemstoneSummary[] = [
     colour: "Teal-Green to Purple-Red",
     origin: "Ratnapura, Sri Lanka",
     image: "/gems/alexandrite.png",
-    gallery: ["/rare-gemstones.png"],
-    video: "/videos/alexandrite-gems-video.mp4",
+    gallery: ["/gems/alexandrite.png"],
+    video: "/videos/web/alexandrite.mp4",
     featured: true,
     certification,
     description:
@@ -95,7 +97,7 @@ export const gemstones: GemstoneSummary[] = [
     origin: "Ratnapura, Sri Lanka",
     image: "/gems/purple-sapphire.png",
     gallery: ["/sapphire.png"],
-    video: "/videos/purple-sapphire.mp4",
+    video: "/videos/web/purple-sapphire.mp4",
     featured: true,
     certification,
     description:
@@ -112,7 +114,7 @@ export const gemstones: GemstoneSummary[] = [
     origin: "Ratnapura, Sri Lanka",
     image: "/gems/yellow-sapphire.png",
     gallery: ["/sapphire.png"],
-    video: "/videos/yellow-sapphire.mp4",
+    video: "/videos/web/yellow-sapphire.mp4",
     featured: true,
     certification,
     description:
