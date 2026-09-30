@@ -17,7 +17,7 @@ export default function FeaturedGemstones() {
 
       <RevealGroup className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
         {featuredGemstones.map((gemstone) => (
-          <GemstoneCard key={gemstone.id} gemstone={gemstone} />
+          <GemstoneCard key={gemstone.id} gemstone={gemstone} autoplayVideo />
         ))}
       </RevealGroup>
 

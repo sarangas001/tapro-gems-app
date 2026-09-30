@@ -3,6 +3,7 @@
 import { Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import AutoplayVideo from "@/components/ui/AutoplayVideo";
 import ImageReveal from "@/components/motion/ImageReveal";
 
 interface ProductGalleryProps {
@@ -30,16 +31,11 @@ export default function ProductGallery({ name, image, gallery, videoSrc }: Produ
     <div className="flex flex-col gap-6">
       <ImageReveal className="relative aspect-4/5 w-full overflow-hidden rounded-2xl shadow-xl shadow-navy-900/10">
         {showVideo ? (
-          <video
+          <AutoplayVideo
             key={videoSrc}
-            src={videoSrc}
+            src={videoSrc!}
             poster={image}
-            autoPlay
-            muted
-            loop
-            playsInline
             controls
-            preload="metadata"
             className="h-full w-full object-cover"
           />
         ) : (
