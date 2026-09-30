@@ -114,7 +114,7 @@ export const gemstones: GemstoneSummary[] = [
     origin: "Ratnapura, Sri Lanka",
     image: "/gems/yellow-sapphire.png",
     gallery: ["/gems/yellow-sapphire.png"],
-    video: "/videos/web/yellow-sapphire.mp4",
+    video: "/videos/web/yellow-sapphire-2.mp4",
     featured: true,
     certification,
     description:
