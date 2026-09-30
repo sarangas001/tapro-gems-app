@@ -16,10 +16,31 @@ const labelClasses = "text-xs font-medium tracking-[0.15em] text-ink-muted upper
 
 export default function AppointmentForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    setError("");
+
+    const data = Object.fromEntries(new FormData(event.currentTarget).entries());
+
+    try {
+      const response = await fetch("/api/appointment", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setError(
+        `We could not send your request. Please try again or contact us at ${contactDetails.phone}.`,
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -105,10 +126,26 @@ export default function AppointmentForm() {
                 <textarea name="message" rows={4} className={`${fieldClasses} resize-none`} />
               </label>
 
-              <div className="sm:col-span-2">
-                <Button type="submit" size="md">
-                  Request Appointment
-                </Button>
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
+
+              <div className="flex flex-col gap-3 sm:col-span-2">
+                {error ? (
+                  <p role="alert" className="text-sm text-red-700">
+                    {error}
+                  </p>
+                ) : null}
+                <div>
+                  <Button type="submit" size="md" disabled={sending}>
+                    {sending ? "Sending…" : "Request Appointment"}
+                  </Button>
+                </div>
               </div>
             </form>
           )}

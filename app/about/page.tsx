@@ -5,6 +5,7 @@ import FamilyOwned from "@/components/sections/about/FamilyOwned";
 import NaturalGemstones from "@/components/sections/about/NaturalGemstones";
 import OurApproach from "@/components/sections/about/OurApproach";
 import OurStory from "@/components/sections/about/OurStory";
+import OurTeam from "@/components/sections/about/OurTeam";
 import OurVision from "@/components/sections/about/OurVision";
 import ShortIntro from "@/components/sections/about/ShortIntro";
 import WhatWeOffer from "@/components/sections/about/WhatWeOffer";
@@ -22,6 +23,7 @@ export default function AboutPage() {
       <AboutHero />
       <ShortIntro />
       <OurStory />
+      <OurTeam />
       <WhatWeOffer />
       <NaturalGemstones />
       <CertificationTrust />
