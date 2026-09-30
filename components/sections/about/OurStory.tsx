@@ -19,18 +19,19 @@ export default function OurStory() {
           <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">Our Story</h2>
           <div className="flex flex-col gap-4 text-base leading-relaxed text-ink-muted sm:text-lg">
             <p>
-              Tapro Gems was created with a clear purpose: to connect the
-              natural beauty of Sri Lankan gemstones with clients who value
-              authenticity, rarity and trust.
+              Tapro Gems is a family-owned gem business rooted in Sri Lanka, built on more than 25 years of knowledge, experience, and passion for the country’s precious gemstones. What began as a family business in Sri Lanka has grown through years of dedication and expertise, and is now expanding to Europe, beginning in Finland.
             </p>
             <p>
-              As a family-owned business based in Finland, we combine direct
-              access to Sri Lankan gemstones with a calm, transparent and
-              personalised approach to service.
+              Our experienced team in Sri Lanka has developed extensive knowledge of the local gem industry and carefully selects each gemstone brought to Finland. From the wide variety of gemstones available in Sri Lanka, we choose only the finest stones that meet our standards for quality, authenticity, color, clarity, cut, and overall character.
             </p>
             <p>
-              Every stone is selected with care, with a strong focus on
-              natural origin, quality and certification.
+              Every gemstone offered by Tapro Gems is selected with care and with the belief that our customers deserve something truly special. Our aim is to bring the finest selections of Sri Lankan gemstones to European customers while maintaining the standards, knowledge, and values that have guided our family business for generations.
+            </p>
+            <p>
+              We believe that owning a gemstone should be more than simply owning something beautiful. It should be an experience built on trust, knowledge, quality, transparency, and genuine value.
+            </p>
+            <p>
+              Tapro Gems is more than a new business — it is the continuation of a family legacy, bringing the beauty, character, and heritage of Sri Lankan gemstones from our homeland to a new generation of customers across Europe.
             </p>
           </div>
         </Reveal>
