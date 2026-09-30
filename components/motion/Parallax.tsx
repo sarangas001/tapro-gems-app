@@ -40,7 +40,7 @@ export default function Parallax({ children, className = "", amount = 60 }: Para
               trigger: el.parentElement ?? el,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1.2,
+              scrub: true,
             },
           },
         );

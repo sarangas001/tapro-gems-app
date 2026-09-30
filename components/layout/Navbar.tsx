@@ -44,7 +44,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid ? "bg-ivory/95 shadow-sm shadow-navy-900/5 backdrop-blur-sm" : "bg-transparent"
+        solid ? "bg-ivory shadow-sm shadow-navy-900/5" : "bg-transparent"
       }`}
     >
       <Reveal delay={0.1} y={-12} duration={0.8}>

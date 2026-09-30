@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { useRef } from "react";
 import Container from "@/components/ui/Container";
-import gsap, { ScrollTrigger } from "@/lib/gsap";
+import gsap from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 import HeroContent from "./HeroContent";
 
@@ -40,13 +40,9 @@ export default function HeroSection() {
           trigger: sectionRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: 1,
+          scrub: true,
         },
       });
-
-      return () => {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
     },
     { scope: sectionRef },
   );

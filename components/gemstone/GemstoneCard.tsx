@@ -9,7 +9,7 @@ interface GemstoneCardProps {
 
 export default function GemstoneCard({ gemstone }: GemstoneCardProps) {
   return (
-    <div className="group overflow-hidden rounded-2xl bg-ivory-100 shadow-sm shadow-navy-900/5 transition-shadow duration-300 hover:shadow-lg hover:shadow-navy-900/10">
+    <div className="group relative overflow-hidden rounded-2xl bg-ivory-100 shadow-sm shadow-navy-900/5 transition-shadow duration-300 hover:shadow-lg hover:shadow-navy-900/10">
       <div className="relative aspect-square">
         <Image
           src={gemstone.image}
@@ -18,13 +18,12 @@ export default function GemstoneCard({ gemstone }: GemstoneCardProps) {
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <Link
-          href={`/shop/${gemstone.slug}`}
-          aria-label={`View ${gemstone.name}`}
-          className="absolute -bottom-5 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink shadow-md shadow-navy-900/15 transition-colors hover:bg-gold-400 hover:text-navy-950"
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-5 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink shadow-md shadow-navy-900/15 transition-colors group-hover:bg-gold-400 group-hover:text-navy-950"
         >
-          <Plus className="h-4 w-4" aria-hidden="true" />
-        </Link>
+          <Plus className="h-4 w-4" />
+        </span>
       </div>
 
       <div className="flex flex-col gap-4 p-5 pt-8">
@@ -53,6 +52,11 @@ export default function GemstoneCard({ gemstone }: GemstoneCardProps) {
           </div>
         </dl>
       </div>
+      <Link
+        href={`/shop/${gemstone.slug}`}
+        aria-label={`View ${gemstone.name}`}
+        className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-2 focus-visible:outline-gold-500"
+      />
     </div>
   );
 }

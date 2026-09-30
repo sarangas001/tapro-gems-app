@@ -15,9 +15,9 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: "Explore",
     links: [
       { label: "Shop Gemstones", href: "/shop" },
-      { label: "Collections", href: "/collections" },
-      { label: "Certification", href: "/certification" },
-      { label: "Collectors & Wholesale", href: "/collectors" },
+      { label: "Our Story", href: "/about" },
+      { label: "Certification", href: "/about#certification" },
+      { label: "Private Appointments", href: "/appointment" },
     ],
   },
   {
@@ -26,7 +26,6 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: "Home", href: "/" },
       { label: "Shop", href: "/shop" },
       { label: "About", href: "/about" },
-      { label: "Certification", href: "/certification" },
       { label: "Contact", href: "/contact" },
     ],
   },

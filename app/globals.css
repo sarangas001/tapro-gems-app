@@ -47,3 +47,12 @@ body {
   background-color: var(--color-ivory);
   color: var(--color-ink);
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

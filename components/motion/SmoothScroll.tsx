@@ -12,7 +12,7 @@ import gsap, { ScrollTrigger } from "@/lib/gsap";
  */
 export default function SmoothScroll() {
   useLayoutEffect(() => {
-    const lenis = new Lenis({ duration: 1.1 });
+    const lenis = new Lenis({ duration: 1.1, anchors: true });
 
     const syncScrollTrigger = () => ScrollTrigger.update();
     const raf = (time: number) => lenis.raf(time * 1000);
