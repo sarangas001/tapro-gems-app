@@ -1,6 +1,10 @@
 import type { GemstoneSummary } from "@/types/gemstone";
 
-export const featuredGemstones: GemstoneSummary[] = [
+const certification =
+  "Sri Lanka Gem & Jewellery Authority certified; GIA certification available on request.";
+
+/** Single source of truth for every gemstone shown across the site. */
+export const gemstones: GemstoneSummary[] = [
   {
     id: "1",
     slug: "royal-blue-ceylon-sapphire",
@@ -12,7 +16,9 @@ export const featuredGemstones: GemstoneSummary[] = [
     origin: "Ratnapura, Sri Lanka",
     image: "/Royal Blue Ceylon Sapphire.png",
     gallery: ["/sapphire.png"],
-    certification: "Sri Lanka Gem & Jewellery Authority certified; GIA certification available on request.",
+    video: "/videos/Blue%20Sapphire.mp4",
+    featured: true,
+    certification,
     description:
       "A richly saturated royal blue sapphire from the gem fields of Ratnapura, cut to a classic cushion silhouette that maximises brilliance. Its even colour saturation and exceptional clarity make it a rare find even among Ceylon sapphires.",
   },
@@ -27,7 +33,7 @@ export const featuredGemstones: GemstoneSummary[] = [
     origin: "Elahera, Sri Lanka",
     image: "/Pigeon Blood Ruby.png",
     gallery: ["/ruby.png"],
-    certification: "Sri Lanka Gem & Jewellery Authority certified; GIA certification available on request.",
+    certification,
     description:
       "A vivid, high-saturation red ruby from Elahera, prized for its rare pigeon-blood hue. Hand-selected for its clarity and depth of colour, this oval-cut stone is exceptionally scarce in natural, untreated form.",
   },
@@ -42,7 +48,7 @@ export const featuredGemstones: GemstoneSummary[] = [
     origin: "Ratnapura, Sri Lanka",
     image: "/Natural Star Sapphire.png",
     gallery: ["/star-sapphire.png"],
-    certification: "Sri Lanka Gem & Jewellery Authority certified; GIA certification available on request.",
+    certification,
     description:
       "A cornflower-blue star sapphire displaying a sharp six-ray asterism when moved under light, formed naturally over millions of years. Cut en cabochon to showcase its silk inclusions and natural star effect.",
   },
@@ -57,11 +63,108 @@ export const featuredGemstones: GemstoneSummary[] = [
     origin: "Ratnapura, Sri Lanka",
     image: "/Padparadscha Sapphire.png",
     gallery: ["/rare-gemstones.png"],
-    certification: "Sri Lanka Gem & Jewellery Authority certified; GIA certification available on request.",
+    certification,
     description:
       "An exceptionally rare pink-orange padparadscha sapphire, named for the lotus blossom it resembles. Its delicate, even colour zoning and emerald cut make it a coveted centrepiece for collectors.",
   },
+  {
+    id: "5",
+    slug: "alexandrite",
+    name: "Alexandrite",
+    category: "Rare Gemstone",
+    caratWeight: 1.92,
+    cut: "Oval",
+    colour: "Teal-Green to Purple-Red",
+    origin: "Ratnapura, Sri Lanka",
+    image: "/gems/alexandrite.png",
+    gallery: ["/rare-gemstones.png"],
+    video: "/videos/alexandrite-gems-video.mp4",
+    featured: true,
+    certification,
+    description:
+      "A natural alexandrite celebrated for its dramatic colour change, shifting from teal-green in daylight to a warm purple-red under incandescent light. Among the rarest of all gemstones, this oval-cut stone is a true collector's piece.",
+  },
+  {
+    id: "6",
+    slug: "purple-sapphire",
+    name: "Purple Sapphire",
+    category: "Sapphire",
+    caratWeight: 3.48,
+    cut: "Cushion",
+    colour: "Violet-Purple",
+    origin: "Ratnapura, Sri Lanka",
+    image: "/gems/purple-sapphire.png",
+    gallery: ["/sapphire.png"],
+    video: "/videos/purple-sapphire.mp4",
+    featured: true,
+    certification,
+    description:
+      "A rich violet-purple sapphire with an even, velvety saturation and lively brilliance. Hand-selected in Ratnapura and cut to a cushion shape, it offers a distinctive alternative to the classic blue.",
+  },
+  {
+    id: "7",
+    slug: "yellow-sapphire",
+    name: "Yellow Sapphire",
+    category: "Sapphire",
+    caratWeight: 5.07,
+    cut: "Oval",
+    colour: "Golden Yellow",
+    origin: "Ratnapura, Sri Lanka",
+    image: "/gems/yellow-sapphire.png",
+    gallery: ["/sapphire.png"],
+    video: "/videos/yellow-sapphire.mp4",
+    featured: true,
+    certification,
+    description:
+      "A luminous golden-yellow sapphire with excellent transparency and a warm, sunlit glow. Cut to a generous oval, this natural Ceylon stone pairs exceptional clarity with lasting, everyday brilliance.",
+  },
 ];
 
-/** Full catalogue — currently identical to the featured set. */
-export const gemstones = featuredGemstones;
+/** Gemstones highlighted on the homepage. */
+export const featuredGemstones: GemstoneSummary[] = gemstones.filter(
+  (gemstone) => gemstone.featured,
+);
+
+export function getGemstoneBySlug(slug: string): GemstoneSummary | undefined {
+  return gemstones.find((gemstone) => gemstone.slug === slug);
+}
+
+export interface GemstoneCategory {
+  name: string;
+  slug: string;
+  description: string;
+  image: string;
+  /** Representative gemstone this category links to and borrows its video from. */
+  gemstoneSlug: string;
+}
+
+export const gemstoneCategories: GemstoneCategory[] = [
+  {
+    name: "Sapphire",
+    slug: "sapphire",
+    description: "The signature Ceylon blue — hand-selected and certified for depth of colour.",
+    image: "/sapphire.png",
+    gemstoneSlug: "royal-blue-ceylon-sapphire",
+  },
+  {
+    name: "Ruby",
+    slug: "ruby",
+    description: "Rare Sri Lankan rubies prized for their vivid, pigeon-blood tone.",
+    image: "/ruby.png",
+    gemstoneSlug: "pigeon-blood-ruby",
+  },
+  {
+    name: "Star Sapphire",
+    slug: "star-sapphire",
+    description: "Natural asterism formed over millions of years, cut en cabochon.",
+    image: "/star-sapphire.png",
+    gemstoneSlug: "natural-star-sapphire",
+  },
+  {
+    name: "Rare Gemstones",
+    slug: "rare-gemstones",
+    description: "Exceptional and unusual stones sourced for the discerning collector.",
+    image: "/rare-gemstones.png",
+    gemstoneSlug: "alexandrite",
+  },
+];

@@ -2,13 +2,14 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SocialIcon from "@/components/ui/SocialIcon";
+import { contactDetails } from "@/lib/data/contact";
 import { footerNav, languages } from "@/lib/data/navigation";
 import Logo from "./Logo";
 
 const socials = [
   { platform: "instagram" as const, href: "https://instagram.com", label: "Instagram" },
   { platform: "facebook" as const, href: "https://facebook.com", label: "Facebook" },
-  { platform: "whatsapp" as const, href: "https://wa.me/", label: "WhatsApp" },
+  { platform: "whatsapp" as const, href: contactDetails.whatsapp, label: "WhatsApp" },
 ];
 
 export default function Footer() {
@@ -32,11 +33,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-gold-600" />
-                +358 40 000 0000
+                {contactDetails.phone}
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-gold-600" />
-                Helsinki, Finland
+                {contactDetails.address}
               </li>
             </ul>
           </div>

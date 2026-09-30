@@ -3,7 +3,7 @@ import RevealGroup from "@/components/motion/RevealGroup";
 import CategoryCard from "@/components/ui/CategoryCard";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { gemstoneCategories } from "@/lib/data/categories";
+import { gemstoneCategories, getGemstoneBySlug } from "@/lib/data/gemstones";
 
 export default function ExploreCategories() {
   return (
@@ -12,14 +12,18 @@ export default function ExploreCategories() {
         <SectionHeading eyebrow="Explore" title="Explore Our Gemstones" align="center" />
       </Reveal>
       <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {gemstoneCategories.map((category) => (
-          <CategoryCard
-            key={category.slug}
-            name={category.name}
-            image={category.image}
-            href={`/collections/${category.slug}`}
-          />
-        ))}
+        {gemstoneCategories.map((category) => {
+          const gemstone = getGemstoneBySlug(category.gemstoneSlug);
+          return (
+            <CategoryCard
+              key={category.slug}
+              name={category.name}
+              image={category.image}
+              href={gemstone ? `/shop/${gemstone.slug}` : "/shop"}
+              videoSrc={gemstone?.video}
+            />
+          );
+        })}
       </RevealGroup>
     </Section>
   );

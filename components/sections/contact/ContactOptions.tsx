@@ -1,6 +1,7 @@
 import { Briefcase, CalendarCheck, Mail, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import RevealGroup from "@/components/motion/RevealGroup";
+import { contactDetails } from "@/lib/data/contact";
 import Section from "@/components/ui/Section";
 
 const options = [
@@ -8,13 +9,13 @@ const options = [
     icon: Mail,
     title: "Email Us",
     description: "For general enquiries, gemstone information and business requests.",
-    href: "mailto:hello@taprogems.com",
+    href: `mailto:${contactDetails.emails.join(",")}`,
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
     description: "For quick questions, product availability and appointment requests.",
-    href: "https://wa.me/",
+    href: contactDetails.whatsapp,
   },
   {
     icon: CalendarCheck,

@@ -1,12 +1,13 @@
 import { Building2, Mail, MapPin, Phone } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
+import { contactDetails } from "@/lib/data/contact";
 import Section from "@/components/ui/Section";
 
 const details = [
-  { icon: Mail, label: "hello@taprogems.com" },
-  { icon: Phone, label: "+358 40 000 0000 (Phone / WhatsApp)" },
-  { icon: MapPin, label: "Helsinki, Finland" },
+  ...contactDetails.emails.map((email) => ({ icon: Mail, label: email })),
+  { icon: Phone, label: `${contactDetails.phone} (Phone / WhatsApp)` },
+  { icon: MapPin, label: contactDetails.address },
   { icon: Building2, label: "Registered in Finland" },
 ];
 

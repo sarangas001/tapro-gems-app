@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -8,19 +6,10 @@ import ProductGallery from "@/components/gemstone/ProductGallery";
 import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
-import { gemstones } from "@/lib/data/gemstones";
+import { gemstones, getGemstoneBySlug } from "@/lib/data/gemstones";
 
 interface PageProps {
   params: Promise<{ id: string }>;
-}
-
-function findGemstone(id: string) {
-  return gemstones.find((gemstone) => gemstone.slug === id);
-}
-
-function findVideo(id: string) {
-  const videoPath = path.join(process.cwd(), "public", "videos", `${id}.mp4`);
-  return fs.existsSync(videoPath) ? `/videos/${id}.mp4` : undefined;
 }
 
 export function generateStaticParams() {
@@ -29,7 +18,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const gemstone = findGemstone(id);
+  const gemstone = getGemstoneBySlug(id);
 
   if (!gemstone) {
     return { title: "Gemstone Not Found | Tapro Gems" };
@@ -43,13 +32,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GemstonePage({ params }: PageProps) {
   const { id } = await params;
-  const gemstone = findGemstone(id);
+  const gemstone = getGemstoneBySlug(id);
 
   if (!gemstone) {
     notFound();
   }
-
-  const videoSrc = findVideo(id);
 
   const specs = [
     { label: "Carat", value: `${gemstone.caratWeight.toFixed(2)} ct` },
@@ -74,7 +61,7 @@ export default async function GemstonePage({ params }: PageProps) {
             name={gemstone.name}
             image={gemstone.image}
             gallery={gemstone.gallery}
-            videoSrc={videoSrc}
+            videoSrc={gemstone.video}
           />
         </Reveal>
 
@@ -104,10 +91,10 @@ export default async function GemstonePage({ params }: PageProps) {
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button href="/contact#enquiry-form" size="md">
+            <Button href="/appointment" size="md">
               Book Appointment
             </Button>
-            <Button href="/certification" variant="outline" size="md">
+            <Button href="/about#certification" variant="outline" size="md">
               Certification Standards
             </Button>
           </div>
