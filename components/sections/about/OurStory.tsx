@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Reveal from "@/components/motion/Reveal";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import Section from "@/components/ui/Section";
 
 export default function OurStory() {
@@ -11,7 +11,15 @@ export default function OurStory() {
             aria-hidden="true"
             className="absolute -top-6 -left-6 -z-10 h-4/5 w-3/5 rounded-2xl bg-sapphire-100"
           />
-          <ImagePlaceholder className="aspect-4/5 w-full" />
+          <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl">
+            <Image
+              src="/team.png"
+              alt="The Tapro Gems team"
+              fill
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              className="object-cover"
+            />
+          </div>
         </Reveal>
 
         <Reveal delay={0.15} className="flex flex-col gap-6">
