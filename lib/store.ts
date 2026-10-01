@@ -20,7 +20,7 @@ const STORE_FILE = path.join(DATA_DIR, "store.json");
 export const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
 
 /** On Vercel the filesystem is read-only, so content and uploads live in Vercel Blob. */
-export const USE_BLOB = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+export const USE_BLOB = Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
 const BLOB_STORE_PATH = "admin/store.json";
 
 const IMAGE_PATTERN = /\.(png|jpe?g|webp|avif)$/i;
