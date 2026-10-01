@@ -1,6 +1,7 @@
 "use client";
 
 import { Upload, X } from "lucide-react";
+import { upload } from "@vercel/blob/client";
 import { useRef, useState } from "react";
 import MediaPreview from "./MediaPreview";
 import { labelClasses, secondaryButton } from "./ui";
@@ -12,6 +13,26 @@ export interface UploadedFile {
 }
 
 export async function uploadFiles(files: FileList | File[]): Promise<UploadedFile[]> {
+  // Production (Vercel Blob): the API route answers the token handshake with JSON. Locally it
+  // is a plain multipart endpoint, so probe once and fall back.
+  const list = Array.from(files);
+  const probe = await fetch("/api/admin/upload", { method: "GET" }).catch(() => null);
+  if (probe?.headers.get("x-upload-mode") === "blob") {
+    return Promise.all(
+      list.map(async (file) => {
+        const blob = await upload(file.name, file, {
+          access: "public",
+          handleUploadUrl: "/api/admin/upload",
+        });
+        return {
+          src: blob.url,
+          type: file.type.startsWith("video/") ? ("video" as const) : ("image" as const),
+          name: file.name,
+        };
+      }),
+    );
+  }
+
   const body = new FormData();
   for (const file of Array.from(files)) body.append("file", file);
   const response = await fetch("/api/admin/upload", { method: "POST", body });
