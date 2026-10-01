@@ -1,6 +1,7 @@
 import "server-only";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { del, head, put } from "@vercel/blob";
 import { seedGemstones } from "@/lib/data/gemstones";
 import type { GemstoneSummary } from "@/types/gemstone";
 import type { MediaItem } from "@/types/media";
@@ -17,6 +18,10 @@ interface StoreData {
 const DATA_DIR = path.join(process.cwd(), "data");
 const STORE_FILE = path.join(DATA_DIR, "store.json");
 export const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
+
+/** On Vercel the filesystem is read-only, so content and uploads live in Vercel Blob. */
+export const USE_BLOB = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+const BLOB_STORE_PATH = "admin/store.json";
 
 const IMAGE_PATTERN = /\.(png|jpe?g|webp|avif)$/i;
 
@@ -64,9 +69,17 @@ async function seedGallery(): Promise<MediaItem[]> {
   }));
 }
 
+async function readRaw(): Promise<StoreData> {
+  if (!USE_BLOB) return JSON.parse(await fs.readFile(STORE_FILE, "utf8")) as StoreData;
+  const blob = await head(BLOB_STORE_PATH); // throws BlobNotFoundError on first run
+  const response = await fetch(`${blob.url}?t=${Date.now()}`, { cache: "no-store" });
+  if (!response.ok) throw new Error("Could not read store.");
+  return (await response.json()) as StoreData;
+}
+
 async function readStore(): Promise<StoreData> {
   try {
-    const data = JSON.parse(await fs.readFile(STORE_FILE, "utf8")) as StoreData;
+    const data = await readRaw();
     if (!data.gallerySeeded) {
       data.gallery = [...(await seedGallery()), ...data.gallery];
       data.gallerySeeded = true;
@@ -86,6 +99,16 @@ async function readStore(): Promise<StoreData> {
 }
 
 async function writeStore(data: StoreData) {
+  if (USE_BLOB) {
+    await put(BLOB_STORE_PATH, JSON.stringify(data), {
+      access: "public",
+      contentType: "application/json",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      cacheControlMaxAge: 60,
+    });
+    return;
+  }
   await fs.mkdir(DATA_DIR, { recursive: true });
   const tmp = `${STORE_FILE}.${crypto.randomUUID()}.tmp`;
   await fs.writeFile(tmp, JSON.stringify(data, null, 2));
@@ -190,6 +213,10 @@ export async function deleteMedia(list: MediaList, id: string) {
 
 /** Removes an uploaded file from disk; ignores bundled files under public/. */
 export async function removeUploadedFile(src: string | undefined) {
+  if (src && /^https:\/\/[^/]+\.blob\.vercel-storage\.com\//.test(src)) {
+    await del(src).catch(() => {});
+    return;
+  }
   if (!src?.startsWith("/media/")) return;
   const name = path.basename(decodeURIComponent(src));
   await fs.rm(path.join(UPLOAD_DIR, name), { force: true });

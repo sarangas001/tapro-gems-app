@@ -1,7 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { isAdmin } from "@/lib/admin/auth";
-import { UPLOAD_DIR } from "@/lib/store";
+import { UPLOAD_DIR, USE_BLOB } from "@/lib/store";
 
 const ALLOWED: Record<string, "image" | "video"> = {
   ".png": "image",
@@ -14,9 +15,34 @@ const ALLOWED: Record<string, "image" | "video"> = {
   ".mov": "video",
 };
 
+/** Tells the uploader which mode to use. */
+export async function GET() {
+  return new Response(null, { headers: { "x-upload-mode": USE_BLOB ? "blob" : "disk" } });
+}
+
 export async function POST(request: Request) {
   if (!(await isAdmin())) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // On Vercel the browser uploads straight to Blob (functions cap request bodies at ~4.5 MB);
+  // this route only issues the upload token.
+  if (USE_BLOB) {
+    const body = (await request.json()) as HandleUploadBody;
+    try {
+      return Response.json(
+        await handleUpload({
+          body,
+          request,
+          onBeforeGenerateToken: async () => ({
+            allowedContentTypes: ["image/*", "video/*"],
+            addRandomSuffix: true,
+          }),
+        }),
+      );
+    } catch (error) {
+      return Response.json({ error: (error as Error).message }, { status: 400 });
+    }
   }
 
   const form = await request.formData();
