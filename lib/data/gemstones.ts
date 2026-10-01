@@ -3,8 +3,8 @@ import type { GemstoneSummary } from "@/types/gemstone";
 const certification =
   "Sri Lanka Gem & Jewellery Authority certified; GIA certification available on request.";
 
-/** Single source of truth for every gemstone shown across the site. */
-export const gemstones: GemstoneSummary[] = [
+/** Initial catalogue; seeds the admin-managed store on first run (see lib/store.ts). */
+export const seedGemstones: GemstoneSummary[] = [
   {
     id: "1",
     slug: "royal-blue-ceylon-sapphire",
@@ -121,15 +121,6 @@ export const gemstones: GemstoneSummary[] = [
       "A luminous golden-yellow sapphire with excellent transparency and a warm, sunlit glow. Cut to a generous oval, this natural Ceylon stone pairs exceptional clarity with lasting, everyday brilliance.",
   },
 ];
-
-/** Gemstones highlighted on the homepage. */
-export const featuredGemstones: GemstoneSummary[] = gemstones.filter(
-  (gemstone) => gemstone.featured,
-);
-
-export function getGemstoneBySlug(slug: string): GemstoneSummary | undefined {
-  return gemstones.find((gemstone) => gemstone.slug === slug);
-}
 
 export interface GemstoneCategory {
   name: string;

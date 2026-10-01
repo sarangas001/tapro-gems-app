@@ -6,19 +6,19 @@ import ProductGallery from "@/components/gemstone/ProductGallery";
 import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
-import { gemstones, getGemstoneBySlug } from "@/lib/data/gemstones";
+import { getGemstoneBySlug, getGemstones } from "@/lib/store";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export function generateStaticParams() {
-  return gemstones.map((gemstone) => ({ id: gemstone.slug }));
+export async function generateStaticParams() {
+  return (await getGemstones()).map((gemstone) => ({ id: gemstone.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const gemstone = getGemstoneBySlug(id);
+  const gemstone = await getGemstoneBySlug(id);
 
   if (!gemstone) {
     return { title: "Gemstone Not Found | Tapro Gems" };
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GemstonePage({ params }: PageProps) {
   const { id } = await params;
-  const gemstone = getGemstoneBySlug(id);
+  const gemstone = await getGemstoneBySlug(id);
 
   if (!gemstone) {
     notFound();

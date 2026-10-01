@@ -2,9 +2,10 @@ import GemstoneCard from "@/components/gemstone/GemstoneCard";
 import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import Section from "@/components/ui/Section";
-import { gemstones } from "@/lib/data/gemstones";
+import { getGemstones } from "@/lib/store";
 
-export default function ShopGrid() {
+export default async function ShopGrid() {
+  const gemstones = await getGemstones();
   return (
     <Section background="white">
       <Reveal className="mb-16 flex flex-col items-center gap-4 text-center">

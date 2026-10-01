@@ -4,8 +4,8 @@ import { useState, type FormEvent } from "react";
 import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
+import type { GemstoneSummary } from "@/types/gemstone";
 import { contactDetails } from "@/lib/data/contact";
-import { gemstones } from "@/lib/data/gemstones";
 
 const formats = ["In person — Tampere", "Video call", "Phone call"];
 
@@ -14,7 +14,7 @@ const fieldClasses =
 
 const labelClasses = "text-xs font-medium tracking-[0.15em] text-ink-muted uppercase";
 
-export default function AppointmentForm() {
+export default function AppointmentForm({ gemstones }: { gemstones: GemstoneSummary[] }) {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
