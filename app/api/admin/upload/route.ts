@@ -1,6 +1,12 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
+import { issueSignedToken } from "@vercel/blob";
+import {
+  handleUpload,
+  handleUploadPresigned,
+  type HandleUploadBody,
+  type HandleUploadPresignedBody,
+} from "@vercel/blob/client";
 import { isAdmin } from "@/lib/admin/auth";
 import { UPLOAD_DIR, USE_BLOB } from "@/lib/store";
 
@@ -15,9 +21,16 @@ const ALLOWED: Record<string, "image" | "video"> = {
   ".mov": "video",
 };
 
+// Stores created with a read-write token use client tokens; newer OIDC stores (BLOB_STORE_ID only)
+// use presigned URLs.
+function uploadMode() {
+  if (!USE_BLOB) return "disk";
+  return process.env.BLOB_READ_WRITE_TOKEN ? "blob" : "presigned";
+}
+
 /** Tells the uploader which mode to use. */
 export async function GET() {
-  return new Response(null, { headers: { "x-upload-mode": USE_BLOB ? "blob" : "disk" } });
+  return new Response(null, { headers: { "x-upload-mode": uploadMode() } });
 }
 
 export async function POST(request: Request) {
@@ -27,7 +40,30 @@ export async function POST(request: Request) {
 
   // On Vercel the browser uploads straight to Blob (functions cap request bodies at ~4.5 MB);
   // this route only issues the upload token.
-  if (USE_BLOB) {
+  if (uploadMode() === "presigned") {
+    const body = (await request.json()) as HandleUploadPresignedBody;
+    try {
+      return Response.json(
+        await handleUploadPresigned({
+          body,
+          request,
+          getSignedToken: async (pathname) => ({
+            token: await issueSignedToken({
+              pathname,
+              operations: ["put"],
+              allowedContentTypes: ["image/*", "video/*"],
+            }),
+            urlOptions: { addRandomSuffix: true },
+          }),
+        }),
+      );
+    } catch (error) {
+      console.error("Blob presign failed", error);
+      return Response.json({ error: (error as Error).message }, { status: 400 });
+    }
+  }
+
+  if (uploadMode() === "blob") {
     const body = (await request.json()) as HandleUploadBody;
     try {
       return Response.json(

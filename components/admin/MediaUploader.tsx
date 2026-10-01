@@ -1,7 +1,7 @@
 "use client";
 
 import { Upload, X } from "lucide-react";
-import { upload } from "@vercel/blob/client";
+import { upload, uploadPresigned } from "@vercel/blob/client";
 import { useRef, useState } from "react";
 import MediaPreview from "./MediaPreview";
 import { labelClasses, secondaryButton } from "./ui";
@@ -17,10 +17,12 @@ export async function uploadFiles(files: FileList | File[]): Promise<UploadedFil
   // is a plain multipart endpoint, so probe once and fall back.
   const list = Array.from(files);
   const probe = await fetch("/api/admin/upload", { method: "GET" }).catch(() => null);
-  if (probe?.headers.get("x-upload-mode") === "blob") {
+  const mode = probe?.headers.get("x-upload-mode");
+  if (mode === "blob" || mode === "presigned") {
+    const send = mode === "blob" ? upload : uploadPresigned;
     return Promise.all(
       list.map(async (file) => {
-        const blob = await upload(file.name, file, {
+        const blob = await send(`uploads/${file.name}`, file, {
           access: "public",
           handleUploadUrl: "/api/admin/upload",
         });
