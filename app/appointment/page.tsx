@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getGemstones } from "@/lib/store";
 import AppointmentForm from "@/components/sections/appointment/AppointmentForm";
 
 export const metadata: Metadata = {
@@ -7,6 +8,6 @@ export const metadata: Metadata = {
     "Book a private consultation with Tapro Gems to discuss natural Sri Lankan gemstones, sourcing options and certification.",
 };
 
-export default function AppointmentPage() {
-  return <AppointmentForm />;
+export default async function AppointmentPage() {
+  return <AppointmentForm gemstones={await getGemstones()} />;
 }

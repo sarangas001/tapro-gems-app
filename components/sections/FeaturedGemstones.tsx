@@ -3,9 +3,10 @@ import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
-import { featuredGemstones } from "@/lib/data/gemstones";
+import { getFeaturedGemstones } from "@/lib/store";
 
-export default function FeaturedGemstones() {
+export default async function FeaturedGemstones() {
+  const featuredGemstones = await getFeaturedGemstones();
   return (
     <Section background="white">
       <Reveal className="mb-16 flex flex-col items-center gap-4 text-center">

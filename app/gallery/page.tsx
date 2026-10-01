@@ -1,34 +1,39 @@
+import type { Metadata } from "next";
 import Image from "next/image";
-import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import AutoplayVideo from "@/components/ui/AutoplayVideo";
 import Section from "@/components/ui/Section";
 import { getMedia } from "@/lib/store";
 
-/** Items managed from the admin dashboard (Collections hub). */
-export default async function CollectionsGallery() {
-  const items = await getMedia("collections");
+export const metadata: Metadata = {
+  title: "Gallery | Tapro Gems",
+  description: "Images and films from Tapro Gems.",
+};
+
+export default async function GalleryPage() {
+  const items = await getMedia("gallery");
 
   return (
-    <Section background="white">
+    <Section background="white" className="pt-32 md:pt-40 lg:pt-48">
       <Reveal className="mb-16 flex flex-col items-center gap-4 text-center">
-        <h2 className="font-display text-3xl font-semibold tracking-[0.2em] text-ink uppercase sm:text-4xl">
-          The Jewellery Collection
-        </h2>
+        <h1 className="font-display text-3xl font-semibold tracking-[0.2em] text-ink uppercase sm:text-4xl">
+          Gallery
+        </h1>
         <span className="h-px w-12 bg-gold-500" />
       </Reveal>
 
       <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
-          <ImageReveal
+          <div
             key={item.id}
-            className="relative aspect-3/4 w-full overflow-hidden rounded-2xl shadow-sm shadow-navy-900/10"
+            className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-sm shadow-navy-900/10"
           >
             {item.type === "video" ? (
               <AutoplayVideo
                 src={item.src}
                 poster=""
+                controls
                 aria-label={item.title}
                 className="absolute inset-0 h-full w-full object-cover"
               />
@@ -38,10 +43,10 @@ export default async function CollectionsGallery() {
                 alt={item.title}
                 fill
                 sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                className="object-cover"
               />
             )}
-          </ImageReveal>
+          </div>
         ))}
       </RevealGroup>
     </Section>
