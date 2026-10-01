@@ -88,7 +88,7 @@ async function readStore(): Promise<StoreData> {
     if (!data.gallerySeeded) {
       data.gallery = [...(await seedGallery()), ...data.gallery];
       data.gallerySeeded = true;
-      await writeStore(data);
+      if (!USE_BLOB) await writeStore(data);
     }
     return data;
   } catch {
@@ -98,7 +98,8 @@ async function readStore(): Promise<StoreData> {
       gallery: await seedGallery(),
       gallerySeeded: true,
     };
-    await writeStore(seeded);
+    // On Blob, reads never write (parallel build/render workers would race); the first admin save persists.
+    if (!USE_BLOB) await writeStore(seeded);
     return seeded;
   }
 }
@@ -106,13 +107,13 @@ async function readStore(): Promise<StoreData> {
 async function writeStore(data: StoreData) {
   if (USE_BLOB) {
     const pathname = `${BLOB_STORE_PREFIX}${String(Date.now()).padStart(15, "0")}.json`;
-    await put(pathname, JSON.stringify(data), {
+    const saved = await put(pathname, JSON.stringify(data), {
       access: "public",
       contentType: "application/json",
-      addRandomSuffix: false,
+      addRandomSuffix: true, // two saves in the same millisecond must not collide
     });
     const { blobs } = await list({ prefix: BLOB_STORE_PREFIX });
-    const stale = blobs.filter((b) => b.pathname < pathname).map((b) => b.url);
+    const stale = blobs.filter((b) => b.pathname < saved.pathname).map((b) => b.url);
     if (stale.length) await del(stale).catch(() => {});
     return;
   }
