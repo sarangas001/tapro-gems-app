@@ -1,7 +1,7 @@
 import "server-only";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { del, head, put } from "@vercel/blob";
+import { del, head, list, put } from "@vercel/blob";
 import { seedGemstones } from "@/lib/data/gemstones";
 import type { GemstoneSummary } from "@/types/gemstone";
 import type { MediaItem } from "@/types/media";
@@ -21,7 +21,10 @@ export const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
 
 /** On Vercel the filesystem is read-only, so content and uploads live in Vercel Blob. */
 export const USE_BLOB = Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
-const BLOB_STORE_PATH = "admin/store.json";
+// Every save writes a NEW blob (store-<timestamp>.json) instead of overwriting one URL, so a
+// stale CDN copy can never be served; reads pick the newest. "store.json" is the legacy name.
+const BLOB_STORE_PREFIX = "admin/store-";
+const BLOB_LEGACY_PATH = "admin/store.json";
 
 const IMAGE_PATTERN = /\.(png|jpe?g|webp|avif)$/i;
 
@@ -71,8 +74,10 @@ async function seedGallery(): Promise<MediaItem[]> {
 
 async function readRaw(): Promise<StoreData> {
   if (!USE_BLOB) return JSON.parse(await fs.readFile(STORE_FILE, "utf8")) as StoreData;
-  const blob = await head(BLOB_STORE_PATH); // throws BlobNotFoundError on first run
-  const response = await fetch(`${blob.url}?t=${Date.now()}`, { cache: "no-store" });
+  const { blobs } = await list({ prefix: BLOB_STORE_PREFIX });
+  const latest = blobs.sort((a, b) => b.pathname.localeCompare(a.pathname))[0];
+  const url = latest ? latest.url : (await head(BLOB_LEGACY_PATH)).url; // throws on first run
+  const response = await fetch(url, { cache: "no-store" });
   if (!response.ok) throw new Error("Could not read store.");
   return (await response.json()) as StoreData;
 }
@@ -100,13 +105,15 @@ async function readStore(): Promise<StoreData> {
 
 async function writeStore(data: StoreData) {
   if (USE_BLOB) {
-    await put(BLOB_STORE_PATH, JSON.stringify(data), {
+    const pathname = `${BLOB_STORE_PREFIX}${String(Date.now()).padStart(15, "0")}.json`;
+    await put(pathname, JSON.stringify(data), {
       access: "public",
       contentType: "application/json",
       addRandomSuffix: false,
-      allowOverwrite: true,
-      cacheControlMaxAge: 60,
     });
+    const { blobs } = await list({ prefix: BLOB_STORE_PREFIX });
+    const stale = blobs.filter((b) => b.pathname < pathname).map((b) => b.url);
+    if (stale.length) await del(stale).catch(() => {});
     return;
   }
   await fs.mkdir(DATA_DIR, { recursive: true });
