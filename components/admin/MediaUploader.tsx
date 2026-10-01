@@ -16,7 +16,7 @@ export async function uploadFiles(files: FileList | File[]): Promise<UploadedFil
   // Production (Vercel Blob): the API route answers the token handshake with JSON. Locally it
   // is a plain multipart endpoint, so probe once and fall back.
   const list = Array.from(files);
-  const probe = await fetch("/api/admin/upload", { method: "GET" }).catch(() => null);
+  const probe = await fetch("/api/admin/upload", { method: "GET", cache: "no-store" }).catch(() => null);
   const mode = probe?.headers.get("x-upload-mode");
   if (mode === "blob" || mode === "presigned") {
     const send = mode === "blob" ? upload : uploadPresigned;

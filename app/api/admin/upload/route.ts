@@ -28,6 +28,9 @@ function uploadMode() {
   return process.env.BLOB_READ_WRITE_TOKEN ? "blob" : "presigned";
 }
 
+// The mode depends on runtime env vars, so the GET probe must never be prerendered at build time.
+export const dynamic = "force-dynamic";
+
 /** Tells the uploader which mode to use. */
 export async function GET() {
   return new Response(null, { headers: { "x-upload-mode": uploadMode() } });
@@ -40,6 +43,10 @@ export async function POST(request: Request) {
 
   // On Vercel the browser uploads straight to Blob (functions cap request bodies at ~4.5 MB);
   // this route only issues the upload token.
+  if (uploadMode() !== "disk" && !request.headers.get("content-type")?.includes("json")) {
+    return Response.json({ error: "Upload mode mismatch. Reload the page and try again." }, { status: 400 });
+  }
+
   if (uploadMode() === "presigned") {
     const body = (await request.json()) as HandleUploadPresignedBody;
     try {
