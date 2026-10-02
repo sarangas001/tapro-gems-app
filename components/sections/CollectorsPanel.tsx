@@ -10,7 +10,7 @@ const audiences = ["Collectors", "Investors", "Jewellery Designers", "Wholesale 
 
 export default function CollectorsPanel() {
   return (
-    <Section background="ivory">
+    <Section id="collectors" background="ivory" className="scroll-mt-20">
       <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
         <Reveal className="relative mx-auto w-full max-w-sm lg:max-w-none">
           <span
@@ -57,10 +57,7 @@ export default function CollectorsPanel() {
           </RevealGroup>
 
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button href="/collectors" size="md">
-              Private Sourcing
-            </Button>
-            <Button href="/contact" variant="outline" size="md">
+            <Button href="/contact" size="md">
               Speak With Us
             </Button>
           </div>

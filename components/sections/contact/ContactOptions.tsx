@@ -28,7 +28,7 @@ const options = [
     title: "Wholesale & Professional Enquiries",
     description:
       "For jewellery designers, collectors, investors and wholesale buyers looking for specific stones or sourcing support.",
-    href: "/collectors",
+    href: "/#collectors",
   },
 ];
 

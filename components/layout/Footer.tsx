@@ -7,8 +7,6 @@ import { footerNav, languages } from "@/lib/data/navigation";
 import Logo from "./Logo";
 
 const socials = [
-  { platform: "instagram" as const, href: "https://instagram.com", label: "Instagram" },
-  { platform: "facebook" as const, href: "https://facebook.com", label: "Facebook" },
   { platform: "whatsapp" as const, href: contactDetails.whatsapp, label: "WhatsApp" },
 ];
 

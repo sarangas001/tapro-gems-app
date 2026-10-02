@@ -90,7 +90,9 @@ function Block({ block }: { block: LegalBlock }) {
 
 function Section({ section }: { section: LegalSection }) {
   return (
-    <section className="flex flex-col gap-4 border-t border-navy-900/10 py-10 first:border-t-0 first:pt-0">
+    <section
+      id={section.heading.replace(/^\d+\.\s*/, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}
+      className="scroll-mt-24 flex flex-col gap-4 border-t border-navy-900/10 py-10 first:border-t-0 first:pt-0">
       <h2 className="font-display text-2xl text-ink">{section.heading}</h2>
       {section.blocks.map((block, index) => (
         <Block key={index} block={block} />

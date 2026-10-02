@@ -1,11 +1,10 @@
 import Reveal from "@/components/motion/Reveal";
 import Section from "@/components/ui/Section";
 import SocialIcon from "@/components/ui/SocialIcon";
+import { contactDetails } from "@/lib/data/contact";
 
 const socials = [
-  { platform: "instagram" as const, href: "https://instagram.com", label: "Instagram" },
-  { platform: "facebook" as const, href: "https://facebook.com", label: "Facebook" },
-  { platform: "whatsapp" as const, href: "https://wa.me/", label: "WhatsApp" },
+  { platform: "whatsapp" as const, href: contactDetails.whatsapp, label: "WhatsApp" },
 ];
 
 export default function SocialSection() {

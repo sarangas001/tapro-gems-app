@@ -37,7 +37,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Cookies Policy", href: "/cookies" },
       { label: "Terms", href: "/terms" },
-      { label: "Shipping & Purchase Policy", href: "/shipping" },
+      { label: "Shipping & Delivery", href: "/terms#shipping-and-delivery" },
     ],
   },
 ];
