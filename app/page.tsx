@@ -11,6 +11,8 @@ import FeaturedGemstones from "@/components/sections/FeaturedGemstones";
 import FounderStory from "@/components/sections/FounderStory";
 import HeroSection from "@/components/sections/HeroSection";
 import WhyTapro from "@/components/sections/WhyTapro";
+import JsonLd from "@/components/seo/JsonLd";
+import { homeStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeStructuredData} />
       <HeroSection />
       <BrandIntro />
       <FeaturedGemstones />
