@@ -2,12 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { after } from "next/server";
 import {
   checkCredentials,
   createSession,
   destroySession,
   requireAdmin,
 } from "@/lib/admin/auth";
+import { announceAfterPublish } from "@/lib/newsletter/service";
 import {
   addMedia,
   deleteGemstone,
@@ -108,6 +110,8 @@ export async function saveGemstoneAction(_: FormState, form: FormData): Promise<
   }
 
   refreshSite();
+  // Only a newly created gemstone can be a first publication; edits never announce.
+  if (!id) after(announceAfterPublish);
   redirect("/admin/shop");
 }
 
