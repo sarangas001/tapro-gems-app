@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Tapro Gems",
   description:
     "How Tapro Gems collects, uses, stores and protects personal information when you visit our website or contact us.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

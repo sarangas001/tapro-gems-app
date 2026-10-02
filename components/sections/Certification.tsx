@@ -51,7 +51,7 @@ export default function Certification() {
           ))}
         </RevealGroup>
 
-        <Button href="/certification" variant="outline" size="sm" className="w-fit gap-3">
+        <Button href="/about#certification" variant="outline" size="sm" className="w-fit gap-3">
           <span aria-hidden="true" className="h-px w-6 bg-current" />
           Learn About Certification
         </Button>

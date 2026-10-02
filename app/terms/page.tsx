@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Terms & Conditions | Tapro Gems",
   description:
     "The terms governing use of the Tapro Gems website and any enquiries, appointments or services arranged through it.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

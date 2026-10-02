@@ -1,11 +1,10 @@
 import Reveal from "@/components/motion/Reveal";
 import Section from "@/components/ui/Section";
 import SocialIcon from "@/components/ui/SocialIcon";
+import { contactDetails } from "@/lib/data/contact";
 
 const socials = [
-  { platform: "instagram" as const, href: "https://instagram.com", label: "Instagram" },
-  { platform: "facebook" as const, href: "https://facebook.com", label: "Facebook" },
-  { platform: "whatsapp" as const, href: "https://wa.me/", label: "WhatsApp" },
+  { platform: "whatsapp" as const, href: contactDetails.whatsapp, label: "WhatsApp" },
 ];
 
 export default function SocialSection() {
@@ -16,8 +15,7 @@ export default function SocialSection() {
           Stay Connected
         </h2>
         <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
-          Follow Tapro Gems for new gemstone arrivals, featured stones,
-          behind-the-scenes sourcing and brand updates.
+          Message Tapro Gems on WhatsApp for gemstone enquiries and appointment requests.
         </p>
         <div className="flex items-center gap-4">
           {socials.map((social) => (

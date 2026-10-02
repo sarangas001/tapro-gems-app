@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${gemstone.name} | Tapro Gems`,
     description: gemstone.description,
+    alternates: { canonical: `/shop/${gemstone.slug}` },
   };
 }
 

@@ -7,6 +7,7 @@ import { cormorant, inter, playfair } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.taprogems.fi"),
   title: "Tapro Gems | Natural Sri Lankan Gemstones",
   description:
     "Tapro Gems is a Finland-based, family-owned gemstone house offering hand-selected, certified natural Sri Lankan sapphires, rubies and rare gemstones for collectors, investors and jewellery designers across Europe.",

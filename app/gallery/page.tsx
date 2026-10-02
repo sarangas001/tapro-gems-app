@@ -9,6 +9,7 @@ import { getMedia } from "@/lib/store";
 export const metadata: Metadata = {
   title: "Gallery | Tapro Gems",
   description: "Images and films from Tapro Gems.",
+  alternates: { canonical: "/gallery" },
 };
 
 export default async function GalleryPage() {

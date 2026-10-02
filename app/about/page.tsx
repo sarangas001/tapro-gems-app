@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "About Tapro Gems | Natural Sri Lankan Gemstones",
   description:
     "Tapro Gems is a Finland-based, family-owned gemstone company specialising in 100% natural Sri Lankan gemstones for collectors, investors, jewellery professionals and private clients.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

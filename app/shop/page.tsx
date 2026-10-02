@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Shop Natural Gemstones | Tapro Gems",
   description:
     "Browse certified natural Sri Lankan sapphires, rubies, star sapphires and rare gemstones from Tapro Gems.",
+  alternates: { canonical: "/shop" },
 };
 
 export default function ShopPage() {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import AppointmentCTA from "@/components/sections/AppointmentCTA";
 import BrandIntro from "@/components/sections/BrandIntro";
 import Certification from "@/components/sections/Certification";
@@ -10,10 +11,17 @@ import FeaturedGemstones from "@/components/sections/FeaturedGemstones";
 import FounderStory from "@/components/sections/FounderStory";
 import HeroSection from "@/components/sections/HeroSection";
 import WhyTapro from "@/components/sections/WhyTapro";
+import JsonLd from "@/components/seo/JsonLd";
+import { homeStructuredData } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeStructuredData} />
       <HeroSection />
       <BrandIntro />
       <FeaturedGemstones />
