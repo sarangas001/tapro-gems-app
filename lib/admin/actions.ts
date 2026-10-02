@@ -31,6 +31,7 @@ const CATEGORIES: GemstoneCategoryName[] = ["Sapphire", "Ruby", "Star Sapphire",
 
 function refreshSite() {
   revalidatePath("/", "layout");
+  revalidatePath("/sitemap.xml");
 }
 
 const text = (form: FormData, key: string) => String(form.get(key) ?? "").trim();
