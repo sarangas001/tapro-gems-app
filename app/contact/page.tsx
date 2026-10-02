@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Contact Tapro Gems | Natural Sri Lankan Gemstones",
   description:
     "Get in touch with Tapro Gems for gemstone enquiries, private appointments, sourcing requests and certification questions.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

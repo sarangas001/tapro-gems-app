@@ -15,8 +15,7 @@ export default function SocialSection() {
           Stay Connected
         </h2>
         <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
-          Follow Tapro Gems for new gemstone arrivals, featured stones,
-          behind-the-scenes sourcing and brand updates.
+          Message Tapro Gems on WhatsApp for gemstone enquiries and appointment requests.
         </p>
         <div className="flex items-center gap-4">
           {socials.map((social) => (

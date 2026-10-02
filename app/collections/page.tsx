@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Collections | Tapro Gems",
   description:
     "Explore jewellery pieces set with hand-selected, certified natural Sri Lankan gemstones from Tapro Gems.",
+  alternates: { canonical: "/collections" },
 };
 
 export default function CollectionsPage() {

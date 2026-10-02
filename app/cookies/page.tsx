@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Cookie Policy | Tapro Gems",
   description:
     "How Tapro Gems uses cookies and similar technologies on our website, and how to manage your preferences.",
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiesPage() {
