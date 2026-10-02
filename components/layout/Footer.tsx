@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import NewsletterForm from "@/components/newsletter/NewsletterForm";
 import Container from "@/components/ui/Container";
 import SocialIcon from "@/components/ui/SocialIcon";
 import { contactDetails } from "@/lib/data/contact";
@@ -65,7 +66,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-navy-900/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 border-t border-navy-900/10 pt-10">
+          <NewsletterForm />
+        </div>
+
+        <div className="mt-10 flex flex-col gap-6 border-t border-navy-900/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-ink-muted/70">
             &copy; {year} Tapro Gems Oy, Finland. All rights reserved.
           </p>
