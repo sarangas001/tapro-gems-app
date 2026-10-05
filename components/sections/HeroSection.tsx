@@ -6,14 +6,19 @@ import { useRef } from "react";
 import Container from "@/components/ui/Container";
 import gsap from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
+import type { Dictionary } from "@/messages/en";
 import HeroContent from "./HeroContent";
+
+interface HeroSectionProps {
+  content: Dictionary["home"]["hero"];
+}
 
 /**
  * Simple hero: full-bleed portrait photography behind a gradient for
  * legibility, with a short intro fade-in and a subtle scroll-out fade.
  * Never pins the section — scrolling stays entirely native.
  */
-export default function HeroSection() {
+export default function HeroSection({ content }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -55,7 +60,7 @@ export default function HeroSection() {
       <div data-hero="background" className="absolute inset-0">
         <Image
           src="/hero-img.png"
-          alt="Model wearing a Tapro Gems sapphire necklace, earrings and ring"
+          alt={content.imageAlt}
           fill
           priority
           sizes="100vw"
@@ -65,7 +70,7 @@ export default function HeroSection() {
       </div>
 
       <Container className="relative pt-32 pb-20">
-        <HeroContent />
+        <HeroContent content={content} />
       </Container>
     </section>
   );

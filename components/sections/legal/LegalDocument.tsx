@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/i18n/LocaleLink";
 import Container from "@/components/ui/Container";
 import type { LegalBlock, LegalSection } from "@/lib/data/legal/types";
 

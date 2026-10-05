@@ -3,13 +3,15 @@ import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
 import ColumnLines from "@/components/ui/ColumnLines";
 import Container from "@/components/ui/Container";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-export default function PrivateAppointment() {
+export default async function PrivateAppointment() {
+  const t = (await getDictionary()).contact.privateAppointment;
   return (
     <section className="relative overflow-hidden bg-navy-950 text-ivory">
       <Image
         src="/gems-back-img.png"
-        alt="Natural sapphires and rubies resting on dark velvet"
+        alt={t.imageAlt}
         fill
         sizes="100vw"
         className="object-cover"
@@ -21,17 +23,15 @@ export default function PrivateAppointment() {
         <Reveal className="flex flex-col items-center gap-6">
           <span className="h-px w-16 bg-gold-400" aria-hidden="true" />
           <h2 className="font-display text-3xl leading-tight sm:text-4xl">
-            Prefer a More Personal Consultation?
+            {t.heading}
           </h2>
           <p className="max-w-lg text-base leading-relaxed text-ivory-200/80 sm:text-lg">
-            Book a private appointment with Tapro Gems and speak directly
-            with our team about your gemstone requirements, sourcing
-            options and certification needs.
+            {t.text}
           </p>
         </Reveal>
         <Reveal delay={0.15}>
           <Button href="/appointment" size="md">
-            Book a Private Appointment
+            {t.cta}
           </Button>
         </Reveal>
       </Container>

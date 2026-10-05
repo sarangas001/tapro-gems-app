@@ -2,27 +2,22 @@ import Image from "next/image";
 import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-export default function FamilyOwned() {
+export default async function FamilyOwned() {
+  const t = (await getDictionary()).about.family;
   return (
     <Section background="ivory">
       <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
         <Reveal className="flex flex-col gap-6">
           <span className="h-2 w-2 rounded-full bg-gold-500" aria-hidden="true" />
           <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">
-            Family-Owned, Personal Service
+            {t.heading}
           </h2>
           <div className="flex flex-col gap-4 text-base leading-relaxed text-ink-muted sm:text-lg">
-            <p>
-              Tapro Gems is built around personal relationships, trust and
-              long-term value. As a family-owned company, we believe luxury
-              should feel personal rather than distant.
-            </p>
-            <p>
-              Whether a client is a collector, investor, designer or
-              first-time gemstone buyer, we aim to provide thoughtful
-              guidance and a tailored experience.
-            </p>
+            {t.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
           </div>
         </Reveal>
 
@@ -34,7 +29,7 @@ export default function FamilyOwned() {
           <ImageReveal className="relative aspect-4/5 w-full overflow-hidden rounded-2xl shadow-xl shadow-navy-900/10">
             <Image
               src="/Family-Owned-img.png"
-              alt="Two people examining a natural sapphire together"
+              alt={t.imageAlt}
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"
               className="object-cover"

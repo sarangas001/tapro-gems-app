@@ -4,17 +4,19 @@ import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import AutoplayVideo from "@/components/ui/AutoplayVideo";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 import { getMedia } from "@/lib/store";
 
 /** Items managed from the admin dashboard (Collections hub). */
 export default async function CollectionsGallery() {
   const items = await getMedia("collections");
+  const t = (await getDictionary()).collections.gallery;
 
   return (
     <Section background="white">
       <Reveal className="mb-16 flex flex-col items-center gap-4 text-center">
         <h2 className="font-display text-3xl font-semibold tracking-[0.2em] text-ink uppercase sm:text-4xl">
-          The Jewellery Collection
+          {t.heading}
         </h2>
         <span className="h-px w-12 bg-gold-500" />
       </Reveal>
