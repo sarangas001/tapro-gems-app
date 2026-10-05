@@ -11,11 +11,12 @@ interface ProductGalleryProps {
   image: string;
   gallery: string[];
   videoSrc?: string;
+  labels: { playVideo: string; showImage: string };
 }
 
 type Active = "video" | number;
 
-export default function ProductGallery({ name, image, gallery, videoSrc }: ProductGalleryProps) {
+export default function ProductGallery({ name, image, gallery, videoSrc, labels }: ProductGalleryProps) {
   const images = Array.from(new Set([image, ...gallery]));
   const [active, setActive] = useState<Active>(videoSrc ? "video" : 0);
   const showVideo = Boolean(videoSrc) && active === "video";
@@ -57,7 +58,7 @@ export default function ProductGallery({ name, image, gallery, videoSrc }: Produ
             <button
               type="button"
               onClick={() => setActive("video")}
-              aria-label={`Play ${name} video`}
+              aria-label={labels.playVideo}
               aria-pressed={showVideo}
               className={thumbClasses(showVideo)}
             >
@@ -82,7 +83,7 @@ export default function ProductGallery({ name, image, gallery, videoSrc }: Produ
                 key={src}
                 type="button"
                 onClick={() => setActive(index)}
-                aria-label={`Show ${name} image ${index + 1}`}
+                aria-label={labels.showImage.replace("{n}", String(index + 1))}
                 aria-pressed={selected}
                 className={thumbClasses(selected)}
               >

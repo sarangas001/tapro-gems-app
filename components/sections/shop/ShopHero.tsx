@@ -8,7 +8,17 @@ import Container from "@/components/ui/Container";
 import gsap from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 
-export default function ShopHero() {
+interface ShopHeroProps {
+  t: {
+    imageAlt: string;
+    eyebrow: string;
+    heading: string;
+    paragraph: string;
+    cta: string;
+  };
+}
+
+export default function ShopHero({ t }: ShopHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -34,7 +44,7 @@ export default function ShopHero() {
       <div data-hero="background" className="absolute inset-0">
         <Image
           src="/shop-hero.png"
-          alt="Woman examining a natural sapphire among a tray of loose gemstones"
+          alt={t.imageAlt}
           fill
           priority
           sizes="100vw"
@@ -49,22 +59,20 @@ export default function ShopHero() {
             data-hero="eyebrow"
             className="text-sm font-medium tracking-[0.3em] text-gold-600 uppercase"
           >
-            Shop
+            {t.eyebrow}
           </span>
           <h1
             data-hero="heading"
             className="font-display text-4xl leading-tight sm:text-5xl lg:text-6xl"
           >
-            Natural Gemstones, Hand-Selected for You
+            {t.heading}
           </h1>
           <p data-hero="paragraph" className="max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg">
-            Browse certified sapphires, rubies and rare gemstones — each
-            stone hand-selected at origin and ready for a private
-            consultation.
+            {t.paragraph}
           </p>
           <div data-hero="button">
             <Button href="/contact#enquiry-form" size="md">
-              Book a Private Appointment
+              {t.cta}
             </Button>
           </div>
         </div>

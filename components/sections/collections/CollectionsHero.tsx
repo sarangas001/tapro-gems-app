@@ -7,7 +7,17 @@ import Container from "@/components/ui/Container";
 import gsap from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 
-export default function CollectionsHero() {
+export default function CollectionsHero({
+  imageAlt,
+  eyebrow,
+  heading,
+  text,
+}: {
+  imageAlt: string;
+  eyebrow: string;
+  heading: string;
+  text: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -32,7 +42,7 @@ export default function CollectionsHero() {
       <div data-hero="background" className="absolute inset-0">
         <Image
           src="/collection_hero.png"
-          alt="Fine jewellery set with natural Sri Lankan gemstones"
+          alt={imageAlt}
           fill
           priority
           sizes="100vw"
@@ -47,19 +57,19 @@ export default function CollectionsHero() {
             data-hero="eyebrow"
             className="text-sm font-medium tracking-[0.3em] text-gold-600 uppercase"
           >
-            Collections
+            {eyebrow}
           </span>
           <h1
             data-hero="heading"
             className="font-display text-4xl leading-tight sm:text-5xl lg:text-6xl"
           >
-            Jewellery Crafted Around Natural Gemstones
+            {heading}
           </h1>
           <p
             data-hero="paragraph"
             className="max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg"
           >
-            A look at finished pieces set with hand-selected Sri Lankan stones.
+            {text}
           </p>
         </div>
       </Container>

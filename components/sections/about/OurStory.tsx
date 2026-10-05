@@ -1,29 +1,19 @@
 import Reveal from "@/components/motion/Reveal";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-export default function OurStory() {
+export default async function OurStory() {
+  const t = (await getDictionary()).about.story;
   return (
     <Section background="ivory">
       <div className="mx-auto max-w-3xl">
         <Reveal className="flex flex-col gap-6">
           <span className="h-2 w-2 rounded-full bg-gold-500" aria-hidden="true" />
-          <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">Our Story</h2>
+          <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">{t.heading}</h2>
           <div className="flex flex-col gap-4 text-base leading-relaxed text-ink-muted sm:text-lg">
-            <p>
-              Tapro Gems is a family-owned gem business rooted in Sri Lanka, built on more than 25 years of knowledge, experience, and passion for the country’s precious gemstones. What began as a family business in Sri Lanka has grown through years of dedication and expertise, and is now expanding to Europe, beginning in Finland.
-            </p>
-            <p>
-              Our experienced team in Sri Lanka has developed extensive knowledge of the local gem industry and carefully selects each gemstone brought to Finland. From the wide variety of gemstones available in Sri Lanka, we choose only the finest stones that meet our standards for quality, authenticity, color, clarity, cut, and overall character.
-            </p>
-            <p>
-              Every gemstone offered by Tapro Gems is selected with care and with the belief that our customers deserve something truly special. Our aim is to bring the finest selections of Sri Lankan gemstones to European customers while maintaining the standards, knowledge, and values that have guided our family business for generations.
-            </p>
-            <p>
-              We believe that owning a gemstone should be more than simply owning something beautiful. It should be an experience built on trust, knowledge, quality, transparency, and genuine value.
-            </p>
-            <p>
-              Tapro Gems is more than a new business — it is the continuation of a family legacy, bringing the beauty, character, and heritage of Sri Lankan gemstones from our homeland to a new generation of customers across Europe.
-            </p>
+            {t.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
           </div>
         </Reveal>
       </div>

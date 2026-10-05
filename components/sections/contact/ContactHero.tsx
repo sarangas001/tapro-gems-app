@@ -7,7 +7,15 @@ import Container from "@/components/ui/Container";
 import gsap from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 
-export default function ContactHero() {
+export default function ContactHero({
+  eyebrow,
+  heading,
+  imageAlt,
+}: {
+  eyebrow: string;
+  heading: string;
+  imageAlt: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -31,7 +39,7 @@ export default function ContactHero() {
       <div data-hero="background" className="absolute inset-0">
         <Image
           src="/contact-hero.png"
-          alt="Woman holding a natural Tapro Gems sapphire at a marble table"
+          alt={imageAlt}
           fill
           priority
           sizes="100vw"
@@ -46,13 +54,13 @@ export default function ContactHero() {
             data-hero="eyebrow"
             className="text-sm font-medium tracking-[0.3em] text-gold-600 uppercase"
           >
-            Contact Us
+            {eyebrow}
           </span>
           <h1
             data-hero="heading"
             className="font-display text-4xl leading-tight sm:text-5xl lg:text-6xl"
           >
-            Let&rsquo;s Find the Right Gemstone for You
+            {heading}
           </h1>
         </div>
       </Container>

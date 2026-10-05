@@ -3,24 +3,25 @@ import ImageReveal from "@/components/motion/ImageReveal";
 import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-export default function EveryOccasion() {
+export default async function EveryOccasion() {
+  const t = (await getDictionary()).home.occasion;
   return (
     <Section background="white">
       <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
         <Reveal className="order-last flex flex-col gap-6 lg:order-0">
           <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
-            Timeless Elegance,
+            {t.titleLines[0]}
             <br />
-            Any Occasion.
+            {t.titleLines[1]}
           </h2>
           <p className="max-w-md text-base leading-relaxed text-ink-muted sm:text-lg">
-            one exceptional stone, set to accompany every chapter of your
-            life — from boardroom to gala.
+            {t.text}
           </p>
           <Button href="/shop" variant="outline" size="sm" className="w-fit gap-3">
             <span aria-hidden="true" className="h-px w-6 bg-current" />
-            Explore the Collection
+            {t.cta}
           </Button>
         </Reveal>
 
@@ -39,7 +40,7 @@ export default function EveryOccasion() {
           <ImageReveal className="relative aspect-4/5 w-full overflow-hidden rounded-2xl">
             <Image
               src="/girl-gem-side-view.png"
-              alt="Woman wearing a Tapro Gems sapphire drop earring"
+              alt={t.imageAlt}
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"
               className="object-cover"

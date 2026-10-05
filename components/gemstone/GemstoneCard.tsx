@@ -1,7 +1,9 @@
 import { Plus } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/LocaleLink";
 import AutoplayVideo from "@/components/ui/AutoplayVideo";
+import { categoryLabel } from "@/lib/data/gemstones";
+import { getDictionary } from "@/lib/i18n/dictionary";
 import type { GemstoneSummary } from "@/types/gemstone";
 
 interface GemstoneCardProps {
@@ -10,7 +12,8 @@ interface GemstoneCardProps {
   autoplayVideo?: boolean;
 }
 
-export default function GemstoneCard({ gemstone, autoplayVideo = false }: GemstoneCardProps) {
+export default async function GemstoneCard({ gemstone, autoplayVideo = false }: GemstoneCardProps) {
+  const t = (await getDictionary()).shop;
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-ivory-100 shadow-sm shadow-navy-900/5 transition-shadow duration-300 hover:shadow-lg hover:shadow-navy-900/10">
       <div className="relative aspect-square">
@@ -41,32 +44,32 @@ export default function GemstoneCard({ gemstone, autoplayVideo = false }: Gemsto
       <div className="flex flex-col gap-4 p-5 pt-8">
         <div className="text-center">
           <span className="text-[11px] font-medium tracking-[0.2em] text-gold-600 uppercase">
-            {gemstone.category}
+            {categoryLabel(t.categories, gemstone.category)}
           </span>
           <h3 className="mt-1.5 font-display text-lg text-ink">{gemstone.name}</h3>
         </div>
         <dl className="grid grid-cols-2 gap-x-4 gap-y-2 border-t border-navy-900/10 pt-4 text-sm">
           <div>
-            <dt className="text-[11px] text-ink-muted/60 uppercase">Carat</dt>
+            <dt className="text-[11px] text-ink-muted/60 uppercase">{t.card.carat}</dt>
             <dd className="text-ink">{gemstone.caratWeight.toFixed(2)} ct</dd>
           </div>
           <div>
-            <dt className="text-[11px] text-ink-muted/60 uppercase">Cut</dt>
+            <dt className="text-[11px] text-ink-muted/60 uppercase">{t.card.cut}</dt>
             <dd className="text-ink">{gemstone.cut}</dd>
           </div>
           <div>
-            <dt className="text-[11px] text-ink-muted/60 uppercase">Colour</dt>
+            <dt className="text-[11px] text-ink-muted/60 uppercase">{t.card.colour}</dt>
             <dd className="text-ink">{gemstone.colour}</dd>
           </div>
           <div>
-            <dt className="text-[11px] text-ink-muted/60 uppercase">Origin</dt>
+            <dt className="text-[11px] text-ink-muted/60 uppercase">{t.card.origin}</dt>
             <dd className="text-ink">{gemstone.origin}</dd>
           </div>
         </dl>
       </div>
       <Link
         href={`/shop/${gemstone.slug}`}
-        aria-label={`View ${gemstone.name}`}
+        aria-label={t.card.view.replace("{name}", gemstone.name)}
         className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-2 focus-visible:outline-gold-500"
       />
     </div>

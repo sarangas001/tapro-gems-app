@@ -4,22 +4,31 @@ import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import AutoplayVideo from "@/components/ui/AutoplayVideo";
 import Section from "@/components/ui/Section";
+import { hasLocale } from "@/lib/i18n/config";
+import { getDictionary, getDictionaryFor } from "@/lib/i18n/dictionary";
+import { pageAlternates } from "@/lib/i18n/metadata";
 import { getMedia } from "@/lib/store";
 
-export const metadata: Metadata = {
-  title: "Gallery | Tapro Gems",
-  description: "Images and films from Tapro Gems.",
-  alternates: { canonical: "/gallery" },
-};
+export async function generateMetadata({ params }: PageProps<"/[lang]/gallery">): Promise<Metadata> {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+  const { meta } = (await getDictionaryFor(lang)).gallery;
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: pageAlternates("/gallery", lang),
+  };
+}
 
 export default async function GalleryPage() {
   const items = await getMedia("gallery");
+  const t = (await getDictionary()).gallery;
 
   return (
     <Section background="white" className="pt-32 md:pt-40 lg:pt-48">
       <Reveal className="mb-16 flex flex-col items-center gap-4 text-center">
         <h1 className="font-display text-3xl font-semibold tracking-[0.2em] text-ink uppercase sm:text-4xl">
-          Gallery
+          {t.heading}
         </h1>
         <span className="h-px w-12 bg-gold-500" />
       </Reveal>

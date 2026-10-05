@@ -1,42 +1,37 @@
 import { Briefcase, CalendarCheck, Mail, MessageCircle } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/i18n/LocaleLink";
 import RevealGroup from "@/components/motion/RevealGroup";
 import { contactDetails } from "@/lib/data/contact";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
 const options = [
   {
     icon: Mail,
-    title: "Email Us",
-    description: "For general enquiries, gemstone information and business requests.",
     href: `mailto:${contactDetails.emails.join(",")}`,
   },
   {
     icon: MessageCircle,
-    title: "WhatsApp",
-    description: "For quick questions, product availability and appointment requests.",
     href: contactDetails.whatsapp,
   },
   {
     icon: CalendarCheck,
-    title: "Book a Private Appointment",
-    description: "Schedule a personal consultation to discuss your gemstone requirements.",
     href: "/appointment",
   },
   {
     icon: Briefcase,
-    title: "Wholesale & Professional Enquiries",
-    description:
-      "For jewellery designers, collectors, investors and wholesale buyers looking for specific stones or sourcing support.",
     href: "/#collectors",
   },
 ];
 
-export default function ContactOptions() {
+export default async function ContactOptions() {
+  const items = (await getDictionary()).contact.options.items;
   return (
     <Section background="white">
       <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
-        {options.map(({ icon: Icon, title, description, href }) => (
+        {options.map(({ icon: Icon, href }, index) => {
+          const { title, description } = items[index];
+          return (
           <Link
             key={title}
             href={href}
@@ -50,7 +45,8 @@ export default function ContactOptions() {
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{description}</p>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </RevealGroup>
     </Section>
   );

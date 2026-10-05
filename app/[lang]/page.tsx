@@ -12,18 +12,24 @@ import FounderStory from "@/components/sections/FounderStory";
 import HeroSection from "@/components/sections/HeroSection";
 import WhyTapro from "@/components/sections/WhyTapro";
 import JsonLd from "@/components/seo/JsonLd";
+import { hasLocale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionary";
+import { pageAlternates } from "@/lib/i18n/metadata";
 import { homeStructuredData } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+export async function generateMetadata({ params }: PageProps<"/[lang]">): Promise<Metadata> {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+  return { alternates: pageAlternates("/", lang) };
+}
 
-export default function Home() {
+export default async function Home() {
+  const dict = await getDictionary();
   return (
     <>
       <JsonLd data={homeStructuredData} />
-      <HeroSection />
-      <BrandIntro />
+      <HeroSection content={dict.home.hero} />
+      <BrandIntro content={dict.home.brandIntro} />
       <FeaturedGemstones />
       <WhyTapro />
       <EveryOccasion />

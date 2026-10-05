@@ -5,10 +5,10 @@ import RevealGroup from "@/components/motion/RevealGroup";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-const audiences = ["Collectors", "Investors", "Jewellery Designers", "Wholesale Buyers"];
-
-export default function CollectorsPanel() {
+export default async function CollectorsPanel() {
+  const t = (await getDictionary()).home.collectors;
   return (
     <Section id="collectors" background="ivory" className="scroll-mt-20">
       <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
@@ -20,7 +20,7 @@ export default function CollectorsPanel() {
           <ImageReveal className="relative aspect-4/5 w-full overflow-hidden rounded-2xl shadow-xl shadow-navy-900/10">
             <Image
               src="/girl-t-gem.png"
-              alt="Woman holding a loose natural sapphire"
+              alt={t.imageAlt}
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"
               className="object-cover"
@@ -32,7 +32,7 @@ export default function CollectorsPanel() {
           <div className="relative h-24 w-24 self-start sm:h-28 sm:w-28">
             <Image
               src="/ring-gem.png"
-              alt="Gold ring set with a natural sapphire"
+              alt={t.ringAlt}
               fill
               sizes="7rem"
               className="object-contain drop-shadow-xl"
@@ -40,13 +40,13 @@ export default function CollectorsPanel() {
           </div>
 
           <SectionHeading
-            eyebrow="For Professionals"
-            title="Collectors & Professionals"
-            description="Private sourcing, wholesale parcels and consultation for collectors, investors and jewellery designers who require a trusted, direct relationship with origin."
+            eyebrow={t.eyebrow}
+            title={t.title}
+            description={t.description}
           />
 
           <RevealGroup as="ul" className="flex flex-wrap gap-3" stagger={0.08} y={12}>
-            {audiences.map((audience) => (
+            {t.audiences.map((audience) => (
               <li
                 key={audience}
                 className="rounded-full border border-navy-900/15 px-4 py-2 text-sm text-ink"
@@ -58,7 +58,7 @@ export default function CollectorsPanel() {
 
           <div className="flex flex-col gap-4 sm:flex-row">
             <Button href="/contact" size="md">
-              Speak With Us
+              {t.cta}
             </Button>
           </div>
         </Reveal>

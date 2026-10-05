@@ -1,36 +1,27 @@
 import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-const clientTypes = [
-  "Collectors",
-  "Investors",
-  "Jewellery Designers",
-  "Wholesale Buyers",
-  "Private Clients",
-  "Couples Searching for Unique Gemstones",
-];
-
-export default function WhatWeOffer() {
+export default async function WhatWeOffer() {
+  const t = (await getDictionary()).about.offer;
   return (
     <Section background="white">
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
         <Reveal className="flex flex-col items-center gap-6">
           <span className="text-sm font-medium tracking-[0.2em] text-gold-600 uppercase">
-            What We Offer
+            {t.eyebrow}
           </span>
           <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">
-            Natural Gemstones for Every Purpose
+            {t.heading}
           </h2>
           <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
-            We specialise in natural Sri Lankan gemstones, including
-            sapphires, rubies, star sapphires and other precious stones. Our
-            collection is selected for:
+            {t.intro}
           </p>
         </Reveal>
 
         <RevealGroup as="ul" className="flex flex-wrap justify-center gap-3" stagger={0.06}>
-          {clientTypes.map((type) => (
+          {t.clientTypes.map((type) => (
             <li
               key={type}
               className="rounded-full border border-navy-900/15 px-4 py-2 text-sm text-ink"
@@ -42,8 +33,7 @@ export default function WhatWeOffer() {
 
         <Reveal delay={0.1}>
           <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
-            We also provide personalised sourcing and appointment-based
-            support for clients looking for something specific.
+            {t.outro}
           </p>
         </Reveal>
       </div>

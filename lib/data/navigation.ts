@@ -1,49 +1,62 @@
+import type { Dictionary } from "@/messages/en";
+
 export interface NavLink {
   label: string;
   href: string;
 }
 
-export const primaryNav: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "Shop", href: "/shop" },
-  { label: "Collections", href: "/collections" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+type NavKey = keyof Dictionary["nav"]["links"];
+type FooterKey = keyof Dictionary["footer"]["links"];
+
+const primaryNavItems: { key: NavKey; href: string }[] = [
+  { key: "home", href: "/" },
+  { key: "shop", href: "/shop" },
+  { key: "collections", href: "/collections" },
+  { key: "about", href: "/about" },
+  { key: "contact", href: "/contact" },
 ];
 
-export const footerNav: { title: string; links: NavLink[] }[] = [
+const footerNavItems: {
+  title: "explore" | "company" | "legal";
+  links: { key: FooterKey; href: string }[];
+}[] = [
   {
-    title: "Explore",
+    title: "explore",
     links: [
-      { label: "Shop Gemstones", href: "/shop" },
-      { label: "Collections", href: "/collections" },
-      { label: "Our Story", href: "/about" },
-      { label: "Certification", href: "/about#certification" },
-      { label: "Private Appointments", href: "/appointment" },
+      { key: "shop", href: "/shop" },
+      { key: "collections", href: "/collections" },
+      { key: "story", href: "/about" },
+      { key: "certification", href: "/about#certification" },
+      { key: "appointments", href: "/appointment" },
     ],
   },
   {
-    title: "Tapro Gems",
+    title: "company",
     links: [
-      { label: "Home", href: "/" },
-      { label: "Shop", href: "/shop" },
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
+      { key: "home", href: "/" },
+      { key: "shopShort", href: "/shop" },
+      { key: "about", href: "/about" },
+      { key: "contact", href: "/contact" },
     ],
   },
   {
-    title: "Legal",
+    title: "legal",
     links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Cookies Policy", href: "/cookies" },
-      { label: "Terms", href: "/terms" },
-      { label: "Shipping & Delivery", href: "/terms#shipping-and-delivery" },
+      { key: "privacy", href: "/privacy" },
+      { key: "cookies", href: "/cookies" },
+      { key: "terms", href: "/terms" },
+      { key: "shipping", href: "/terms#shipping-and-delivery" },
     ],
   },
 ];
 
-export const languages: { code: string; label: string }[] = [
-  { code: "en", label: "EN" },
-  { code: "fi", label: "FI" },
-  { code: "sv", label: "SV" },
-];
+export const getPrimaryNav = (nav: Dictionary["nav"]): NavLink[] =>
+  primaryNavItems.map(({ key, href }) => ({ label: nav.links[key], href }));
+
+export const getFooterNav = (
+  footer: Dictionary["footer"],
+): { title: string; links: NavLink[] }[] =>
+  footerNavItems.map(({ title, links }) => ({
+    title: footer[title],
+    links: links.map(({ key, href }) => ({ label: footer.links[key], href })),
+  }));

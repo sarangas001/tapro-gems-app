@@ -161,3 +161,8 @@ export const gemstoneCategories: GemstoneCategory[] = [
     gemstoneSlug: "yellow-sapphire",
   },
 ];
+
+/** Localised display label for a gemstone category value; unknown (admin-added) categories show as stored. */
+export function categoryLabel(labels: Record<string, string>, category: string): string {
+  return labels[category] ?? category;
+}

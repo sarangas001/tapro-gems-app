@@ -3,22 +3,24 @@ import Reveal from "@/components/motion/Reveal";
 import RevealGroup from "@/components/motion/RevealGroup";
 import { contactDetails } from "@/lib/data/contact";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-const details = [
-  ...contactDetails.emails.map((email) => ({ icon: Mail, label: email })),
-  { icon: Phone, label: `${contactDetails.phone} (Phone / WhatsApp)` },
-  { icon: MapPin, label: contactDetails.address },
-  { icon: Building2, label: "Registered in Finland" },
-];
+export default async function BusinessInformation() {
+  const t = (await getDictionary()).contact.business;
+  const details = [
+    ...contactDetails.emails.map((email) => ({ icon: Mail, label: email })),
+    { icon: Phone, label: `${contactDetails.phone} ${t.phoneSuffix}` },
+    { icon: MapPin, label: contactDetails.address },
+    { icon: Building2, label: t.registered },
+  ];
 
-export default function BusinessInformation() {
   return (
     <Section background="white">
       <div className="mx-auto flex max-w-xl flex-col items-center gap-8 text-center">
         <Reveal className="flex flex-col items-center gap-2">
           <h2 className="font-display text-2xl text-ink sm:text-3xl">Tapro Gems</h2>
-          <p className="text-sm text-ink-muted">Finland-based family-owned gemstone company</p>
-          <p className="text-sm text-ink-muted">Specialising in natural Sri Lankan gemstones</p>
+          <p className="text-sm text-ink-muted">{t.tagline}</p>
+          <p className="text-sm text-ink-muted">{t.specialising}</p>
         </Reveal>
 
         <RevealGroup as="ul" className="flex flex-col gap-3 text-sm text-ink-muted" stagger={0.06}>

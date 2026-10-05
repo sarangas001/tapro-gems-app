@@ -10,19 +10,31 @@ import OurVision from "@/components/sections/about/OurVision";
 import ShortIntro from "@/components/sections/about/ShortIntro";
 import WhatWeOffer from "@/components/sections/about/WhatWeOffer";
 import AppointmentCTA from "@/components/sections/AppointmentCTA";
+import { hasLocale } from "@/lib/i18n/config";
+import { getDictionary, getDictionaryFor } from "@/lib/i18n/dictionary";
+import { pageAlternates } from "@/lib/i18n/metadata";
 
-export const metadata: Metadata = {
-  title: "About Tapro Gems | Natural Sri Lankan Gemstones",
-  description:
-    "Tapro Gems is a Finland-based, family-owned gemstone company specialising in 100% natural Sri Lankan gemstones for collectors, investors, jewellery professionals and private clients.",
-  alternates: { canonical: "/about" },
-};
+export async function generateMetadata({ params }: PageProps<"/[lang]/about">): Promise<Metadata> {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+  const { meta } = (await getDictionaryFor(lang)).about;
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: pageAlternates("/about", lang),
+  };
+}
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { hero, intro } = (await getDictionary()).about;
   return (
     <>
-      <AboutHero />
-      <ShortIntro />
+      <AboutHero imageAlt={hero.imageAlt} eyebrow={hero.eyebrow} heading={hero.heading} />
+      <ShortIntro
+        watermarkNatural={intro.watermarkNatural}
+        watermarkTrusted={intro.watermarkTrusted}
+        text={intro.text}
+      />
       <OurStory />
       <OurTeam />
       <WhatWeOffer />

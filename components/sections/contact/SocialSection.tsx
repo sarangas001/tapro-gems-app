@@ -2,20 +2,22 @@ import Reveal from "@/components/motion/Reveal";
 import Section from "@/components/ui/Section";
 import SocialIcon from "@/components/ui/SocialIcon";
 import { contactDetails } from "@/lib/data/contact";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
-const socials = [
-  { platform: "whatsapp" as const, href: contactDetails.whatsapp, label: "WhatsApp" },
-];
+export default async function SocialSection() {
+  const t = (await getDictionary()).contact.social;
+  const socials = [
+    { platform: "whatsapp" as const, href: contactDetails.whatsapp, label: t.whatsappLabel },
+  ];
 
-export default function SocialSection() {
   return (
     <Section background="ivory">
       <Reveal className="mx-auto flex max-w-xl flex-col items-center gap-6 text-center">
         <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">
-          Stay Connected
+          {t.heading}
         </h2>
         <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
-          Message Tapro Gems on WhatsApp for gemstone enquiries and appointment requests.
+          {t.text}
         </p>
         <div className="flex items-center gap-4">
           {socials.map((social) => (

@@ -1,7 +1,8 @@
-import Link from "next/link";
+import Link from "@/components/i18n/LocaleLink";
 import type { ReactNode } from "react";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
+import { getDictionary } from "@/lib/i18n/dictionary";
 
 interface StatusCardProps {
   eyebrow: string;
@@ -11,7 +12,8 @@ interface StatusCardProps {
 }
 
 /** Branded result screen for newsletter confirmation. */
-export default function StatusCard({ eyebrow, title, children, action }: StatusCardProps) {
+export default async function StatusCard({ eyebrow, title, children, action }: StatusCardProps) {
+  const { card } = (await getDictionary()).newsletter;
   return (
     <Section background="ivory" className="pt-32 md:pt-40 lg:pt-48">
       <div className="mx-auto flex max-w-xl flex-col items-center gap-6 text-center">
@@ -21,11 +23,11 @@ export default function StatusCard({ eyebrow, title, children, action }: StatusC
         <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
           {action}
           <Button href="/shop" variant={action ? "outline" : "primary"}>
-            Explore the collection
+            {card.explore}
           </Button>
         </div>
         <Link href="/" className="text-sm text-ink-muted underline underline-offset-4 hover:text-ink">
-          Back to home
+          {card.backHome}
         </Link>
       </div>
     </Section>
