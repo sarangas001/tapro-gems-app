@@ -19,14 +19,8 @@
     "storyLine2": "tarinamme"
   },
   "finland": {
-    "eyebrow": "Nyt Suomessa",
-    "title": "Sri Lankan jalokivet, nyt Suomessa.",
-    "description": "Yli 25 vuoden työn jälkeen Sri Lankan jalokivikentillä Tapro Gems on avannut eurooppalaisen kotinsa Suomessa – tuoden käsin valitut, sertifioidut aidot jalokivet lähemmäs keräilijöitä, sijoittajia ja korusuunnittelijoita ympäri Euroopan.",
-    "points": [
-      { "title": "Eurooppalainen toimipiste", "description": "Suomessa toimiva yritys, joka palvelee asiakkaita ympäri Euroopan." },
-      { "title": "Suoraan alkuperästä", "description": "Jokainen jalokivi valitaan Sri Lankassa, ja oma tiimimme tuo ne Suomeen." },
-      { "title": "Henkilökohtainen palvelu", "description": "Yksityisnäytöt ja konsultaatiot ajanvarauksella." }
-    ],
+    "eyebrow": "Tapro Gems on saapunut",
+    "title": "Nyt Suomessa.",
     "cta": "Varaa aika"
   },
   "featured": {
