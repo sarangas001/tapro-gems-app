@@ -30,8 +30,8 @@ export default async function Home() {
     <>
       <JsonLd data={homeStructuredData} />
       <HeroSection content={dict.home.hero} />
-      <BrandIntro content={dict.home.brandIntro} />
       <FinlandNow />
+      <BrandIntro content={dict.home.brandIntro} />
       <FeaturedGemstones />
       <WhyTapro />
       <EveryOccasion />
