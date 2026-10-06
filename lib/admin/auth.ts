@@ -2,7 +2,7 @@ import "server-only";
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
-const ADMIN_USERNAME = "sarangadev";
+const ADMIN_USERNAME = "taproadmin";
 const ADMIN_PASSWORD = "Tapro@123";
 
 const COOKIE_NAME = "tapro_admin";
