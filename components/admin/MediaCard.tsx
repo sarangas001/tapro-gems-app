@@ -37,6 +37,7 @@ export default function MediaCard({ list, item, kind }: MediaCardProps) {
         src={item.src}
         type={item.type}
         alt={item.title}
+        size={400}
         className="aspect-square w-full bg-ivory-100 object-cover"
       />
       <div className="flex flex-col gap-3 p-4">

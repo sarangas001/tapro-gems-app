@@ -1,5 +1,6 @@
 import "server-only";
 import fs from "node:fs/promises";
+import { cache } from "react";
 import path from "node:path";
 import { del, head, list, put } from "@vercel/blob";
 import { seedGemstones } from "@/lib/data/gemstones";
@@ -82,6 +83,9 @@ async function readRaw(): Promise<StoreData> {
   return (await response.json()) as StoreData;
 }
 
+// Memoised per request: the dashboard reads several lists and must only hit Blob once.
+const readStoreCached = cache(readStore);
+
 async function readStore(): Promise<StoreData> {
   try {
     const data = await readRaw();
@@ -140,7 +144,7 @@ async function mutate<T>(fn: (data: StoreData) => T | Promise<T>): Promise<T> {
 /* ---------------------------------- Gemstones --------------------------------- */
 
 export async function getGemstones(): Promise<GemstoneSummary[]> {
-  return (await readStore()).gemstones;
+  return (await readStoreCached()).gemstones;
 }
 
 export async function getFeaturedGemstones(): Promise<GemstoneSummary[]> {
@@ -186,7 +190,7 @@ export async function deleteGemstone(id: string) {
 type MediaList = "collections" | "gallery";
 
 export async function getMedia(list: MediaList): Promise<MediaItem[]> {
-  return (await readStore())[list];
+  return (await readStoreCached())[list];
 }
 
 export async function addMedia(list: MediaList, item: Omit<MediaItem, "id" | "createdAt">) {

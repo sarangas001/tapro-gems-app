@@ -32,6 +32,7 @@ export default async function AdminShopPage() {
                 src={gemstone.image}
                 type="image"
                 alt={gemstone.name}
+                size={64}
                 className="h-16 w-16 rounded-lg object-cover"
               />
               <div className="min-w-0 flex-1">
