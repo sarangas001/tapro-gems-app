@@ -18,6 +18,11 @@
     "storyLine1": "Our",
     "storyLine2": "Story"
   },
+  "finland": {
+    "eyebrow": "Tapro Gems Has Arrived",
+    "title": "Now in Finland.",
+    "cta": "Book an Appointment"
+  },
   "featured": {
     "title": "Featured Gemstones",
     "viewAll": "View All Gemstones"

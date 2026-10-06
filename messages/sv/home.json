@@ -18,6 +18,11 @@
     "storyLine1": "Vår",
     "storyLine2": "historia"
   },
+  "finland": {
+    "eyebrow": "Tapro Gems har anlänt",
+    "title": "Nu i Finland.",
+    "cta": "Boka en tid"
+  },
   "featured": {
     "title": "Utvalda ädelstenar",
     "viewAll": "Visa alla ädelstenar"

@@ -7,6 +7,7 @@ import CollectionsBanner from "@/components/sections/CollectionsBanner";
 import CollectorsPanel from "@/components/sections/CollectorsPanel";
 import EveryOccasion from "@/components/sections/EveryOccasion";
 import ExploreCategories from "@/components/sections/ExploreCategories";
+import FinlandNow from "@/components/sections/FinlandNow";
 import FeaturedGemstones from "@/components/sections/FeaturedGemstones";
 import FounderStory from "@/components/sections/FounderStory";
 import HeroSection from "@/components/sections/HeroSection";
@@ -29,6 +30,7 @@ export default async function Home() {
     <>
       <JsonLd data={homeStructuredData} />
       <HeroSection content={dict.home.hero} />
+      <FinlandNow />
       <BrandIntro content={dict.home.brandIntro} />
       <FeaturedGemstones />
       <WhyTapro />

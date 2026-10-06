@@ -18,6 +18,11 @@
     "storyLine1": "Meidän",
     "storyLine2": "tarinamme"
   },
+  "finland": {
+    "eyebrow": "Tapro Gems on saapunut",
+    "title": "Nyt Suomessa.",
+    "cta": "Varaa aika"
+  },
   "featured": {
     "title": "Esillä olevat jalokivet",
     "viewAll": "Katso kaikki jalokivet"
