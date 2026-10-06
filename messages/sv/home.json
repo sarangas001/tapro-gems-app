@@ -18,6 +18,17 @@
     "storyLine1": "Vår",
     "storyLine2": "historia"
   },
+  "finland": {
+    "eyebrow": "Nu i Finland",
+    "title": "Ädelstenar från Sri Lanka, nu i Finland.",
+    "description": "Efter mer än 25 år vid Sri Lankas ädelstensfält har Tapro Gems öppnat sitt europeiska hem i Finland – och för handplockade, certifierade naturliga stenar närmare samlare, investerare och smyckesdesigners över hela Europa.",
+    "points": [
+      { "title": "Europeisk bas", "description": "Ett finländskt företag som betjänar kunder i hela Europa." },
+      { "title": "Direkt från ursprunget", "description": "Varje sten väljs ut i Sri Lanka och förs till Finland av vårt eget team." },
+      { "title": "Personlig service", "description": "Privata visningar och konsultationer efter överenskommelse." }
+    ],
+    "cta": "Boka en tid"
+  },
   "featured": {
     "title": "Utvalda ädelstenar",
     "viewAll": "Visa alla ädelstenar"

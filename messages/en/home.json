@@ -18,6 +18,17 @@
     "storyLine1": "Our",
     "storyLine2": "Story"
   },
+  "finland": {
+    "eyebrow": "Now in Finland",
+    "title": "Sri Lankan Gemstones, Now in Finland.",
+    "description": "After more than 25 years at the gem fields of Sri Lanka, Tapro Gems has opened its European home in Finland — bringing hand-selected, certified natural stones closer to collectors, investors and jewellery designers across the continent.",
+    "points": [
+      { "title": "European Base", "description": "A Finland-based company serving clients across Europe." },
+      { "title": "Direct From Origin", "description": "Every stone is selected in Sri Lanka and brought to Finland by our own team." },
+      { "title": "Personal Service", "description": "Private viewings and consultations, by appointment." }
+    ],
+    "cta": "Book an Appointment"
+  },
   "featured": {
     "title": "Featured Gemstones",
     "viewAll": "View All Gemstones"
