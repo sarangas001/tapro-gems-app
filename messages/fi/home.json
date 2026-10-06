@@ -14,7 +14,7 @@
   "brandIntro": {
     "watermarkTop": "Jalokivet",
     "watermarkBottom": "Valikoima",
-    "text": "Kolmen sukupolven osaaminen, jonka tarkoituksena on tuoda Sri Lankan hienoimmat aidot jalokivet vaativille keräilijöille ympäri Euroopan.",
+    "text": "Kahden sukupolven osaaminen, jonka tarkoituksena on tuoda Sri Lankan hienoimmat aidot jalokivet vaativille keräilijöille ympäri Euroopan.",
     "storyLine1": "Meidän",
     "storyLine2": "tarinamme"
   },
@@ -25,7 +25,7 @@
   "why": {
     "imageAlt": "Nainen yllään Tapro Gemsin safiirimedaljonki ja korvakorut",
     "titleLines": ["Jokainen kivi,", "vastuullisesti hankittu."],
-    "text": "Jokainen tarjoamamme jalokivi on käsin valittu alkuperämaassa Sri Lankassa ja sertifioitu riippumattomasti – kolmen sukupolven perheyrityksen ylläpitämä laatustandardi.",
+    "text": "Jokainen tarjoamamme jalokivi on käsin valittu alkuperämaassa Sri Lankassa ja sertifioitu riippumattomasti – kahden sukupolven perheyrityksen ylläpitämä laatustandardi.",
     "keyPoints": ["100 % aito", "Sri Lankalainen alkuperä", "Käsin valittu", "Sertifioitu", "Perheyritys"],
     "cta": "Tutustu"
   },
@@ -91,7 +91,7 @@
   },
   "founder": {
     "eyebrow": "Perustajan tarina",
-    "title": "Kolme sukupolvea, yksi alkuperä.",
+    "title": "Kaksi sukupolvea, yksi alkuperä.",
     "description": "Tapro Gems sai alkunsa perheen yhteydestä Ratnapuran jalokivikentille Sri Lankassa. Tänä päivänä tämä suhde mahdollistaa kivien käsinvalinnan suoraan alkuperämaassa – ja saman luottamuksen ja huolenpidon välittämisen jokaiselle asiakkaallemme Helsingistä ympäri Euroopan."
   }
 }

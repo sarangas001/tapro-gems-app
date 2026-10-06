@@ -14,7 +14,7 @@
   "brandIntro": {
     "watermarkTop": "Ädelstenar",
     "watermarkBottom": "Urval",
-    "text": "Tre generationers expertis, med målet att föra de finaste naturliga ädelstenarna från Sri Lanka till kräsna samlare i hela Europa.",
+    "text": "Två generationers expertis, med målet att föra de finaste naturliga ädelstenarna från Sri Lanka till kräsna samlare i hela Europa.",
     "storyLine1": "Vår",
     "storyLine2": "historia"
   },
@@ -25,7 +25,7 @@
   "why": {
     "imageAlt": "Kvinna med ett safirhalsband och örhängen från Tapro Gems",
     "titleLines": ["Varje sten,", "ärligt anskaffad."],
-    "text": "Varje ädelsten vi erbjuder är handplockad på ursprungsplatsen i Sri Lanka och oberoende certifierad – en standard som upprätthållits av tre generationers familjeägande.",
+    "text": "Varje ädelsten vi erbjuder är handplockad på ursprungsplatsen i Sri Lanka och oberoende certifierad – en standard som upprätthållits av två generationers familjeägande.",
     "keyPoints": ["100 % naturlig", "Sri Lankas ursprung", "Handplockad", "Certifierad", "Familjeägt"],
     "cta": "Upptäck"
   },
@@ -91,7 +91,7 @@
   },
   "founder": {
     "eyebrow": "Grundarens historia",
-    "title": "Tre generationer, ett ursprung.",
+    "title": "Två generationer, ett ursprung.",
     "description": "Tapro Gems föddes ur en släktkoppling till ädelstensfälten i Ratnapura, Sri Lanka. Idag gör den relationen det möjligt för oss att handplocka stenar direkt på ursprungsplatsen – och föra samma förtroende och omsorg vidare till varje kund vi betjänar, från Helsingfors till hela Europa."
   }
 }

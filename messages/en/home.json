@@ -14,7 +14,7 @@
   "brandIntro": {
     "watermarkTop": "Gemstones",
     "watermarkBottom": "Selection",
-    "text": "Three generations of expertise, dedicated to bringing the finest natural gemstones from Sri Lanka to discerning collectors across Europe.",
+    "text": "Two generations of expertise, dedicated to bringing the finest natural gemstones from Sri Lanka to discerning collectors across Europe.",
     "storyLine1": "Our",
     "storyLine2": "Story"
   },
@@ -25,7 +25,7 @@
   "why": {
     "imageAlt": "Woman wearing a Tapro Gems sapphire pendant necklace and earrings",
     "titleLines": ["Every Stone,", "Honestly Sourced."],
-    "text": "Every gemstone we offer is hand-selected at origin in Sri Lanka and independently certified — a standard upheld by three generations of family ownership.",
+    "text": "Every gemstone we offer is hand-selected at origin in Sri Lanka and independently certified — a standard upheld by two generations of family ownership.",
     "keyPoints": ["100% Natural", "Sri Lankan Origin", "Hand Selected", "Certified", "Family Owned"],
     "cta": "Discover"
   },
@@ -91,7 +91,7 @@
   },
   "founder": {
     "eyebrow": "Founder Story",
-    "title": "Three generations, one origin.",
+    "title": "Two generations, one origin.",
     "description": "Tapro Gems began with a family connection to the gem fields of Ratnapura, Sri Lanka. Today, that relationship allows us to hand-select stones directly at origin — passing the same trust and care on to every client we serve, from Helsinki to across Europe."
   }
 }
