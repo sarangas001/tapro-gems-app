@@ -1,3 +1,4 @@
+import ImagePathAdder from "@/components/admin/ImagePathAdder";
 import MediaAdder from "@/components/admin/MediaAdder";
 import MediaCard from "@/components/admin/MediaCard";
 import { getMedia } from "@/lib/store";
@@ -9,7 +10,11 @@ export default async function AdminCollectionsPage() {
     <>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <h1 className="font-display text-3xl text-ink">Collections</h1>
-        <MediaAdder list="collections" kind="both" label="Add images / videos" />
+        <MediaAdder list="collections" label="Upload videos" />
+      </div>
+
+      <div className="mb-8">
+        <ImagePathAdder list="collections" />
       </div>
 
       {items.length === 0 ? (

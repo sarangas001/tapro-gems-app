@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { saveGemstoneAction, type FormState } from "@/lib/admin/actions";
 import type { GemstoneSummary } from "@/types/gemstone";
+import ImagePathField, { IMAGE_PATH_HELP } from "./ImagePathField";
 import MediaUploader from "./MediaUploader";
 import { inputClasses, labelClasses, primaryButton, secondaryButton } from "./ui";
 
 const CATEGORIES = ["Sapphire", "Ruby", "Star Sapphire", "Rare Gemstone"];
-const IMAGES = "image/png,image/jpeg,image/webp,image/avif";
 const VIDEOS = "video/mp4,video/webm,video/quicktime";
 
 const initialState: FormState = {};
@@ -109,17 +109,19 @@ export default function GemstoneForm({ gemstone }: { gemstone?: GemstoneSummary 
 
       <section className="flex flex-col gap-6 rounded-2xl bg-white p-6 shadow-sm">
         <h2 className="font-display text-lg text-ink">Media</h2>
-        <MediaUploader
+        <p className="rounded-lg bg-ivory-100 p-3 text-sm text-ink-muted">{IMAGE_PATH_HELP}</p>
+        <ImagePathField
           name="image"
-          label="Main image"
-          accept={IMAGES}
+          label="Main image path"
+          required
+          hideHelp
           initial={gemstone ? [gemstone.image] : []}
         />
-        <MediaUploader
+        <ImagePathField
           name="gallery"
-          label="Gallery images"
-          accept={IMAGES}
+          label="Gallery image paths (in display order)"
           multiple
+          hideHelp
           initial={gemstone?.gallery}
         />
         <MediaUploader

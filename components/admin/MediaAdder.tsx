@@ -9,17 +9,13 @@ import { primaryButton } from "./ui";
 
 interface MediaAdderProps {
   list: "collections" | "gallery";
-  /** Which media kinds this uploader accepts. */
-  kind: "image" | "video" | "both";
   label: string;
 }
 
-const IMAGES = "image/png,image/jpeg,image/webp,image/avif";
 const VIDEOS = "video/mp4,video/webm,video/quicktime";
-const ACCEPT = { image: IMAGES, video: VIDEOS, both: `${IMAGES},${VIDEOS}` };
 
-/** Uploads one or more files and adds each as a new item in the given list. */
-export default function MediaAdder({ list, kind, label }: MediaAdderProps) {
+/** Uploads one or more videos and adds each as a new item. Images are added by path instead. */
+export default function MediaAdder({ list, label }: MediaAdderProps) {
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
@@ -32,7 +28,8 @@ export default function MediaAdder({ list, kind, label }: MediaAdderProps) {
     try {
       const uploaded = await uploadFiles(files);
       for (const file of uploaded) {
-        await addMediaAction(list, file.src, file.type, file.name.replace(/\.[^.]+$/, ""));
+        const result = await addMediaAction(list, file.src, "video", file.name.replace(/\.[^.]+$/, ""));
+        if (result.error) throw new Error(result.error);
       }
       router.refresh();
     } catch (e) {
@@ -50,7 +47,7 @@ export default function MediaAdder({ list, kind, label }: MediaAdderProps) {
         type="file"
         multiple
         hidden
-        accept={ACCEPT[kind]}
+        accept={VIDEOS}
         onChange={(e) => onPick(e.target.files)}
       />
       <button

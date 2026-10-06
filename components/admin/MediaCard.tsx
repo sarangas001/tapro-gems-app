@@ -1,32 +1,32 @@
 "use client";
 
 import { Pencil } from "lucide-react";
-import { useRef, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { deleteMediaAction, updateMediaAction } from "@/lib/admin/actions";
 import type { MediaItem } from "@/types/media";
 import ConfirmDeleteButton from "./ConfirmDeleteButton";
+import ImagePathField from "./ImagePathField";
 import MediaPreview from "./MediaPreview";
 import MediaUploader from "./MediaUploader";
 import { inputClasses, labelClasses, primaryButton, secondaryButton } from "./ui";
 
-const IMAGES = "image/png,image/jpeg,image/webp,image/avif";
 const VIDEOS = "video/mp4,video/webm,video/quicktime";
 
 interface MediaCardProps {
   list: "collections" | "gallery";
   item: MediaItem;
-  /** Restrict replacement files to one kind; both are allowed when omitted. */
-  kind?: "image" | "video";
 }
 
-export default function MediaCard({ list, item, kind }: MediaCardProps) {
+export default function MediaCard({ list, item }: MediaCardProps) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [pending, startTransition] = useTransition();
-  const accept = kind === "image" ? IMAGES : kind === "video" ? VIDEOS : `${IMAGES},${VIDEOS}`;
+  const [error, setError] = useState("");
 
   const save = (form: FormData) => {
     startTransition(async () => {
-      await updateMediaAction(form);
+      const result = await updateMediaAction(form);
+      if (result.error) return setError(result.error);
+      setError("");
       dialog.current?.close();
     });
   };
@@ -73,12 +73,24 @@ export default function MediaCard({ list, item, kind }: MediaCardProps) {
             <span className={labelClasses}>Title</span>
             <input name="title" defaultValue={item.title} className={inputClasses} />
           </label>
-          <MediaUploader
-            name="src"
-            typeName="type"
-            label="Replace file (optional)"
-            accept={accept}
-          />
+          {item.type === "image" ? (
+            <>
+              <input type="hidden" name="type" value="image" />
+              <ImagePathField name="src" label="Image path" required initial={[item.src]} />
+            </>
+          ) : (
+            <MediaUploader
+              name="src"
+              typeName="type"
+              label="Replace video (optional)"
+              accept={VIDEOS}
+            />
+          )}
+          {error ? (
+            <p role="alert" className="text-sm text-red-600">
+              {error}
+            </p>
+          ) : null}
           <div className="flex justify-end gap-3">
             <button
               type="button"

@@ -43,3 +43,6 @@ next-env.d.ts
 
 # admin-managed content and uploads (runtime data)
 /data/
+
+# Blob image migration: store backups stay local
+/migration/backups/
