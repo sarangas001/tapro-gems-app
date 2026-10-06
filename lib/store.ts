@@ -223,13 +223,17 @@ export async function deleteMedia(list: MediaList, id: string) {
   });
 }
 
-/** Removes an uploaded file from disk; ignores bundled files under public/. */
-export async function removeUploadedFile(src: string | undefined) {
-  if (src && /^https:\/\/[^/]+\.blob\.vercel-storage\.com\//.test(src)) {
+/**
+ * Removes an orphaned uploaded VIDEO (Blob or local disk). Images are repository files under
+ * public/ (or legacy Blob originals) and are never deleted here.
+ */
+export async function removeUploadedVideo(src: string | undefined) {
+  if (!src || !/\.(mp4|webm|mov)$/i.test(src)) return;
+  if (/^https:\/\/[^/]+\.blob\.vercel-storage\.com\//.test(src)) {
     await del(src).catch(() => {});
     return;
   }
-  if (!src?.startsWith("/media/")) return;
+  if (!src.startsWith("/media/")) return;
   const name = path.basename(decodeURIComponent(src));
   await fs.rm(path.join(UPLOAD_DIR, name), { force: true });
 }

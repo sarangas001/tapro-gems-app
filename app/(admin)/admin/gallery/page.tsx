@@ -1,3 +1,4 @@
+import ImagePathAdder from "@/components/admin/ImagePathAdder";
 import MediaAdder from "@/components/admin/MediaAdder";
 import MediaCard from "@/components/admin/MediaCard";
 import { getMedia } from "@/lib/store";
@@ -6,7 +7,7 @@ export default async function AdminGalleryPage() {
   const items = await getMedia("gallery");
 
   const groups = [
-    { kind: "image" as const, title: "Images", add: "Upload images" },
+    { kind: "image" as const, title: "Images", add: "" },
     { kind: "video" as const, title: "Videos", add: "Upload videos" },
   ];
 
@@ -22,8 +23,13 @@ export default async function AdminGalleryPage() {
                 <h2 className="font-display text-2xl text-ink">
                   {title} <span className="text-base text-ink-muted">({subset.length})</span>
                 </h2>
-                <MediaAdder list="gallery" kind={kind} label={add} />
+                {kind === "video" ? <MediaAdder list="gallery" label={add} /> : null}
               </div>
+              {kind === "image" ? (
+                <div className="mb-5">
+                  <ImagePathAdder list="gallery" />
+                </div>
+              ) : null}
               {subset.length === 0 ? (
                 <p className="rounded-2xl bg-white p-8 text-center text-ink-muted">
                   No {title.toLowerCase()} yet.
@@ -31,7 +37,7 @@ export default async function AdminGalleryPage() {
               ) : (
                 <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                   {subset.map((item) => (
-                    <MediaCard key={item.id} list="gallery" item={item} kind={kind} />
+                    <MediaCard key={item.id} list="gallery" item={item} />
                   ))}
                 </ul>
               )}

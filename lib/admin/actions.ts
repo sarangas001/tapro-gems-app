@@ -9,6 +9,7 @@ import {
   destroySession,
   requireAdmin,
 } from "@/lib/admin/auth";
+import { imagePathError } from "@/lib/image-path";
 import { announceAfterPublish } from "@/lib/newsletter/service";
 import {
   addMedia,
@@ -16,7 +17,7 @@ import {
   deleteMedia,
   getGemstoneById,
   getMedia,
-  removeUploadedFile,
+  removeUploadedVideo,
   saveGemstone,
   updateMedia,
 } from "@/lib/store";
@@ -76,7 +77,14 @@ export async function saveGemstoneAction(_: FormState, form: FormData): Promise<
   if (!image) return { error: "A main image is required." };
 
   const previous = id ? await getGemstoneById(id) : undefined;
-  const gallery = form.getAll("gallery").map(String).filter(Boolean);
+  const gallery = form.getAll("gallery").map((v) => String(v).trim()).filter(Boolean);
+
+  // Images are project paths; a value already saved on this record is kept as-is (legacy/external).
+  const existingImages = previous ? [previous.image, ...previous.gallery] : [];
+  for (const value of [image, ...gallery]) {
+    const problem = imagePathError(value, existingImages);
+    if (problem) return { error: problem };
+  }
   const video = text(form, "video") || undefined;
 
   try {
@@ -102,11 +110,11 @@ export async function saveGemstoneAction(_: FormState, form: FormData): Promise<
     return { error: error instanceof Error ? error.message : "Could not save gemstone." };
   }
 
-  // Drop uploaded files that this edit no longer references.
+  // Drop uploaded videos that this edit no longer references (image files are never deleted).
   if (previous) {
     const kept = new Set([image, video, ...gallery]);
     for (const src of [previous.image, previous.video, ...previous.gallery]) {
-      if (src && !kept.has(src)) await removeUploadedFile(src);
+      if (src && !kept.has(src)) await removeUploadedVideo(src);
     }
   }
 
@@ -123,7 +131,7 @@ export async function deleteGemstoneAction(form: FormData) {
   await deleteGemstone(id);
   if (gemstone) {
     for (const src of [gemstone.image, gemstone.video, ...gemstone.gallery]) {
-      await removeUploadedFile(src);
+      await removeUploadedVideo(src);
     }
   }
   refreshSite();
@@ -139,14 +147,25 @@ function assertList(list: string): MediaList {
   return list;
 }
 
-export async function addMediaAction(list: string, src: string, type: MediaType, title: string) {
+export async function addMediaAction(
+  list: string,
+  src: string,
+  type: MediaType,
+  title: string,
+): Promise<FormState> {
   await requireAdmin();
+  if (type === "image") {
+    src = src.trim();
+    const problem = imagePathError(src);
+    if (problem) return { error: problem };
+  }
   await addMedia(assertList(list), { src, type, title: title.trim() || "Untitled" });
   refreshSite();
   revalidatePath(`/admin/${list}`);
+  return {};
 }
 
-export async function updateMediaAction(form: FormData) {
+export async function updateMediaAction(form: FormData): Promise<FormState> {
   await requireAdmin();
   const list = assertList(text(form, "list"));
   const id = text(form, "id");
@@ -155,14 +174,20 @@ export async function updateMediaAction(form: FormData) {
   const newSrc = text(form, "src");
   if (newSrc) {
     const existing = (await getMedia(list)).find((m) => m.id === id);
+    const type = text(form, "type") === "video" ? "video" : "image";
+    if (type === "image") {
+      const problem = imagePathError(newSrc, existing ? [existing.src] : []);
+      if (problem) return { error: problem };
+    }
     patch.src = newSrc;
-    patch.type = text(form, "type") === "video" ? "video" : "image";
-    if (existing && existing.src !== newSrc) await removeUploadedFile(existing.src);
+    patch.type = type;
+    if (existing && existing.src !== newSrc) await removeUploadedVideo(existing.src);
   }
 
   await updateMedia(list, id, patch);
   refreshSite();
   revalidatePath(`/admin/${list}`);
+  return {};
 }
 
 export async function deleteMediaAction(form: FormData) {
@@ -171,7 +196,7 @@ export async function deleteMediaAction(form: FormData) {
   const id = text(form, "id");
   const item = (await getMedia(list)).find((m) => m.id === id);
   await deleteMedia(list, id);
-  await removeUploadedFile(item?.src);
+  await removeUploadedVideo(item?.src);
   refreshSite();
   revalidatePath(`/admin/${list}`);
 }
